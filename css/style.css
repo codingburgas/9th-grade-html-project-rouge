@@ -63,4 +63,14 @@
     padding: 15px;
     margin-top: 50px;
   }
-  
+  #theme-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+
+}
