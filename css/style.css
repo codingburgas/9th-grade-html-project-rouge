@@ -74,3 +74,13 @@ body.dark-mode {
   color: white;
 
 }
+.house{
+  position: relative;
+  left: 300px;
+  top:50px;
+}
+.forest{
+  position:relative;
+  left:412px;
+  top:50px;
+}
