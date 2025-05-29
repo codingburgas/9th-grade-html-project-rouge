@@ -79,3 +79,14 @@ body.dark-mode {
   height: 100vh;
   width: 100%;
 }
+
+.house{
+  position: relative;
+  left: 300px;
+  top:50px;
+}
+.forest{
+  position:relative;
+  left:412px;
+  top:50px;
+}
