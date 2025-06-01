@@ -57,24 +57,6 @@
   box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
 }
 
-/* Style the search button */
-#search-form input[type="submit"] {
-  background: #4a90e2;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-/* Button hover effect */
-#search-form input[type="submit"]:hover {
-  background: #357abd;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
 .hide{
     display: none;
 }
