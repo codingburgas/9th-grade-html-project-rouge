@@ -18,6 +18,13 @@
 
   <!-- Leaflet LocateControl plugin script -->
   <script src="/leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.min.js"></script>
+
+  <!-- Leaflet routing machine css-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+  <!-- Leaflet routing machine js -->
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
 </head>
 
 <body>
@@ -48,7 +55,7 @@
 
   <script>
     // Initialize the Leaflet map and set the initial view (center and zoom)
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([42.49483365939794, 27.474203921247042], 15);
 
     // Add OpenStreetMap tile layer (map visuals)
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -58,8 +65,35 @@
     // Add the tile layer to the map
     osm.addTo(map);
 
-    // Add LocateControl button to find and center on the user's current location
-    L.control.locate().addTo(map);
+   var marker = L.marker([42.49483365939794, 27.474203921247042]).addTo(map);
+
+   // map click event 
+   map.on('click', function(event){
+      console.log(event)
+      var secondMarker = L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
+
+      L.Routing.control({
+          waypoints: [
+              L.latLng(42.49483365939794, 27.474203921247042),
+              L.latLng(event.latlng.lat, event.latlng.lng)
+        ]
+      }).on('routesfound', function(event){
+        console.log(event)
+        event.routes[0].coordinates.forEach(function(coord, index){
+          setTimeout(() => {
+            marker.setLatLng([coord.lat, coord.lng])
+          }, 100 * index);
+        })
+      })
+    
+      .addTo(map);
+   })
+
+    
+
+
+
+
   </script>
 
 </body>
