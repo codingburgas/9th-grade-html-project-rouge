@@ -1,10 +1,34 @@
 var AllMarkers = [];
-
-
-function loadMap()
-{
-  // Initialize the Leaflet map and set the initial view (center and zoom)
-var map = L.map('map').setView([42.49483365939794, 27.474203921247042], 15);
+var DepartmentInfo = [];
+function createPopupContent(data) {
+const popupContent = `
+  <div style="
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    font-size: 14px; 
+    line-height: 1.6; 
+    padding: 8px; 
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    max-width: 250px;
+  ">
+    <div style="margin-bottom: 4px;"><strong>№:</strong> ${data[0]}</div>
+    <div style="margin-bottom: 4px;"><strong>СДПБЗН / РСПБЗН:</strong> ${data[1]}</div>
+    <div style="margin-bottom: 4px;"><strong>ПК:</strong> ${data[2]}</div>
+    <div style="margin-bottom: 4px;"><strong>Община:</strong> ${data[3]}</div>
+    <div style="margin-bottom: 4px;"><strong>Адрес:</strong> ${data[4]}</div>
+    <div style="margin-bottom: 4px;"><strong>Телефон:</strong> <span style="color: #007BFF;">${data[5]}</span></div>
+    <div><strong>Email:</strong>${data[6]}</div>
+  </div>
+`;
+return popupContent
+    }
+    
+    
+    function loadMap()
+    {
+      // Initialize the Leaflet map and set the initial view (center and zoom)
+      var map = L.map('map').setView([42.49483365939794, 27.474203921247042], 15);
 
 // Add OpenStreetMap tile layer (map visuals)
 var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,7 +49,7 @@ fetch("../data/department-coordinates.json")
 })
 .then(data => {
   data.forEach(coordinates => {
-    marker = L.marker([coordinates.lat, coordinates.lon]).addTo(map);
+    marker = L.marker([coordinates.lat, coordinates.lon]).addTo(map).bindPopup(createPopupContent(DepartmentInfo[coordinates.id]));
     AllMarkers.push(marker);
   });
 })
@@ -35,7 +59,7 @@ fetch("../data/department-coordinates.json")
 map.on('click', function(event){
   console.log(event);
   var secondMarker = L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
-
+  
   L.Routing.control({
     waypoints: [
       L.latLng(42.49483365939794, 27.474203921247042),
@@ -55,22 +79,23 @@ map.on('click', function(event){
 
 function GetData() {
   const dataInput = document.querySelector("[data-search]");
-
+  
   fetch('../data/department-info.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
       }
       return response.json();
     })
     .then(data => {
+      DepartmentInfo = data;
       const store = data.map(department => {
         return { name: department[1], id: Number(department[0]) };
       });
-
+      
       dataInput.addEventListener("input", (e) => {
         const value = e.target.value.toLowerCase();
-
+        
         store.forEach(user => {
           const isVisible = user.name.toLowerCase().includes(value);
           const marker = AllMarkers[user.id - 1];
@@ -81,8 +106,8 @@ function GetData() {
       });
     })
     .catch(error => console.error("Error loading file:", error));
-}
-
-
-loadMap();
-GetData();
+  }
+  
+  
+  GetData();
+  loadMap();

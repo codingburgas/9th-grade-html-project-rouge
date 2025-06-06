@@ -2,40 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fire Safety</title>
-  <link rel="stylesheet" href="./css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rouge Fighter</title>
+  <link rel="stylesheet" href="./css/mainStyle.css" />
+  <link rel="stylesheet" href="./css/mode.css">
 </head>
 <body>
-  <script src="./javascript/java.js"></script>
-  <header>
-    <h1>Rouge Fighter</h1>
-    <nav>
-      <ul>
+  <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <ul class="nav-links">
         <li><a href="./html/departments.html">Staff</a></li>
         <li><a href="#">Vehicles</a></li>
         <li><a href="./html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
         <li>
           <button id="theme-toggle">
-            <img src="./pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme">
+            <img src="./pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme" />
           </button>
         </li>
       </ul>
-    </nav>
+    </div>
   </header>
 
   <main>
-    <section class="intro">
-      <a href="./html/house.html"><img class="house" src="./pictures/house_on_fire.png" width="100" ></a>
-      <a href="./html/forest.html"><img class="forest"src="./pictures/forest_on_fire.png" width="100"></a>
-        
-      
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Everything you need, <span>ready for emergencies.</span></h2>
+        <p>Monitor and respond to fire incidents with speed and clarity.</p>
+        <a class="cta-button" href="./html/map.html">View Live Map</a>
+      </div>
+      <div class="hero-image">
+        <img src="./pictures/fireman_illustration.png" alt="Hero Fire Image" />
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+      <h2>Active Fire Zones</h2>
+      <div class="map-grid">
+        <div class="fire-card">
+          <a href="./html/house.html">
+            <img src="./pictures/house_on_fire.png" alt="House on Fire" />
+            <p>House Fire</p>
+          </a>
+        </div>
+        <div class="fire-card">
+          <a href="./html/forest.html">
+            <img src="./pictures/forest_on_fire.png" alt="Forest on Fire" />
+            <p>Forest Fire</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="feature">
+        <h3>Real-time Map</h3>
+        <p>View active incidents and crew positions on a live fire response map.</p>
+      </div>
+      <div class="feature">
+        <h3>Incident Detection</h3>
+        <p>AI-enhanced monitoring to detect fires in homes and forests automatically.</p>
+      </div>
+      <div class="feature">
+        <h3>Staff Directory</h3>
+        <p>Quickly contact on-duty fire personnel and assign units directly.</p>
+      </div>
+      <div class="feature">
+        <h3>Resource Tracking</h3>
+        <p>Monitor water levels, vehicle fuel, equipment usage and availability.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p></p>
+    <p>&copy; 2025 Rouge Fighter. All rights reserved.</p>
   </footer>
+
+  <script src="./javascript/java.js"></script>
 </body>
 </html>

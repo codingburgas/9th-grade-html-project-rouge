@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fire Safety</title>
-  
-  <link rel="stylesheet" href="../css/style.css" />
+
+
+  <link rel="stylesheet" href="../css/mode.css">
 
   <!-- Leaflet LocateControl stylesheet -->
   <link rel="stylesheet" href="../leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.css.map"/>
@@ -29,34 +30,50 @@
 </head>
 
 <body>
-
   <script src="../javascipt/map.js"></script>
 
-  <header>
-    <h1>Rouge Fighter</h1>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="#">Staff</a></li>
-        <li><a href="#">Vehicles</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="../html/map.html">Map</a></li>
-        <li><a href="#">Contact</a></li>
-        <li>
-          <button id="theme-toggle">
-            <img src="../pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme">
-          </button>
-        </li>
-      </ul>
-    </nav>
+  <!-- Top Navigation -->
+  <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="#">Staff</a></li>
+          <li><a href="#">Vehicles</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="../html/map.html">Map</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+              <img src="../pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme">
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
-    <form id="search-form">
-        <input type="text" placeholder="Търсене..." id="search-input" data-search>
-    </form>
 
-  <!-- Map container -->
-  <div id="map"></div>
+  <!-- Main content area -->
+  <div class="page-layout">
+    <!-- Left Side -->
+    <div class="left-panel">
+      <!-- Search Form -->
+      <div class="search-wrapper">
+        <form id="search-form">
+          <input type="text" placeholder="Търсене..." id="search-input" data-search />
+        </form>
+      </div>
+    </div>
+<hr>
+    <!-- Right Side (Map) -->
+    <div class="right-panel">
+      <div id="map"></div>
+    </div>
+  </div>
 
   <script src="../javascipt/map.js"></script>
 </body>
+
+
 </html>
