@@ -6,7 +6,9 @@
   <title>Forest Fire Prevention</title>
   <link rel="stylesheet" href="../css/protocol.css" />
   <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css">
   <script src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
 </head>
 <body>
     <header class="main-header">
@@ -18,7 +20,8 @@
         <li><a href="#">Vehicles</a></li>
         <li><a href="../html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="">Sign In</a></li>
+        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+
         <li>
           <button id="theme-toggle">
             <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
@@ -28,7 +31,25 @@
       </ul>
     </div>
   </header>
+<!--Form Section-->
+       <div class="modal" id="formModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Register</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
 <main class="features-flex">
   <div class="card-list">
     <div class="card" onclick="showInfo('prevention')">Forest Fire Prevention</div>

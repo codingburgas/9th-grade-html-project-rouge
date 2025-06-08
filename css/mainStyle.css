@@ -10,68 +10,8 @@ body {
 }
 
 /* Header */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-   background-color: white;
-   padding: 30px;
-  border-radius: 12px;
-  width: 300px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-.open-button{
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 
 
-}
-.account{
-    width: 30px;
-  height: 30px;
-}
 .main-header {
   background-color: var(--PrimaryColor);
   padding: 20px 0;
