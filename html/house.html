@@ -5,134 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fire Safety</title>
   <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
 </head>
 <body>
-  <script src="../javascript/java.js"></script>
 
-  <header class="main-header">
+    <header class="main-header">
     <div class="container">
       <h1 id="Header1">Rouge Fighter</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="#">Staff</a></li>
-          <li><a href="#">Vehicles</a></li>
-          <li><a href="../html/map.html">Map</a></li>
-          <li><a href="#">Contact</a></li>
-          <li>
-            <button id="theme-toggle">
-              <img src="../pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme">
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/departments.html">Staff</a></li>
+        <li><a href="#">Vehicles</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="">Sign In</a></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
     </div>
   </header>
 
-  <main class="features-section">
-    <div class="feature">
-      <h2>Fire Safety Guidelines</h2>
+  <main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('guidelines', this)">Fire Safety Guidelines</div>
+    <div class="card" onclick="showInfo('reduction', this)">Reduce Fire Risks</div>
+    <div class="card" onclick="showInfo('tips', this)">Additional Tips</div>
+  </div>
 
-      <h3>How to React During a Fire</h3>
-      <ul>
-        <li>Stay calm! Panic makes it harder to respond correctly.</li>
-        <li>Try to put out the fire only if it's small and you have both a fire extinguisher and the skills to use it.</li>
-        <li>Don't use water on electrical fires or burning oil/grease!</li>
-        <li>If the fire is growing or threatening you, leave your home immediately.</li>
-        <li>Close doors behind you to limit the fire's spread.</li>
-        <li>Never use elevators or jump from windows.</li>
-        <li>If you can't evacuate, seal the door with wet clothes and signal for help from a window or balcony.</li>
-        <li>Call 112 and provide your exact location.</li>
-        <li>If there's smoke, stay low to the floor and cover your nose and mouth with a damp cloth.</li>
-        <li>If your clothes catch fire – stop, drop, and roll.</li>
-        <li>Once you've left your home – don't go back in!</li>
-        <li>Tell firefighters if there are people in danger or hazardous materials inside.</li>
-      </ul>
-    </div>
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
 
-    <div class="feature">
-      <h3>How to Reduce Fire Risks</h3>
-
-      <h4>In the Kitchen</h4>
-      <ul>
-        <li>Keep stoves and ovens clean</li>
-        <li>Keep flammable materials away from heat</li>
-        <li>Never cook when sleepy or impaired</li>
-        <li>Don't leave cooking unattended</li>
-        <li>Use timers and wear safe clothing</li>
-        <li>Turn off appliances when done!</li>
-      </ul>
-
-      <h4>Electrical Safety</h4>
-      <ul>
-        <li>Use proper fuses and check amperage</li>
-        <li>Regularly inspect wiring, plugs and outlets</li>
-        <li>Don't overload outlets or rely on power strips</li>
-        <li>Don't run cables under carpets or furniture</li>
-      </ul>
-
-      <h4>Electric Heaters</h4>
-      <ul>
-        <li>Only use working heaters without exposed elements</li>
-        <li>Keep them away from flammable materials</li>
-        <li>Never leave them unattended</li>
-        <li>Don't extinguish electrical fires with water!</li>
-      </ul>
-
-      <h4>Solid/Liquid Fuel Heating</h4>
-      <ul>
-        <li>Install at safe distances on non-flammable surfaces</li>
-        <li>Clean stoves and chimneys regularly</li>
-        <li>Never use gasoline or other flammable liquids to start fires</li>
-        <li>Don't dispose of hot ashes in plastic bins!</li>
-        <li>Ventilate frequently and use carbon monoxide detectors</li>
-      </ul>
-
-      <h4>Gas Heating</h4>
-      <ul>
-        <li>Don't store gas cylinders in basements</li>
-        <li>Ventilate rooms regularly</li>
-        <li>Only refill cylinders at licensed facilities</li>
-        <li>Watch for gas leaks – smells like garlic!</li>
-        <li>If you suspect a leak, close the valve, ventilate, and don't use electrical appliances!</li>
-      </ul>
-
-      <h4>Fireworks Safety</h4>
-      <ul>
-        <li>Buy only certified products</li>
-        <li>Use outdoors away from flammable materials</li>
-        <li>Keep away from children</li>
-      </ul>
-
-      <h4>Candles and Cigarettes</h4>
-      <ul>
-        <li>Never leave candles unattended</li>
-        <li>Place them securely, away from flammable objects</li>
-        <li>Don't smoke in bed!</li>
-      </ul>
-
-      <h4>During Holidays</h4>
-      <ul>
-        <li>Use only properly working decorations and lighting</li>
-        <li>Keep decorations away from heaters</li>
-        <li>Unplug everything before going to bed or leaving home</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3>Additional Tips</h3>
-      <ul>
-        <li>Create an evacuation plan and practice with your family</li>
-        <li>Prepare an emergency bag with essential items</li>
-        <li>Keep keys in an easily accessible place</li>
-        <li>Teach children not to play with matches and lighters</li>
-        <li>Keep a fire extinguisher at home and learn how to use it</li>
-      </ul>
-    </div>
-  </main>
 
   <footer>
     <p>&copy; 2025 Rouge Fighter - Fire Safety Initiative</p>
   </footer>
+  <script>
+  const content = {
+    guidelines: `
+      <h2>Fire Safety Guidelines</h2>
+      <h3>How to React During a Fire</h3>
+      <ul>
+        <li>Stay calm! Panic makes it harder to respond correctly.</li>
+        <li>Only try to put out small fires if safe and trained.</li>
+        <li>Don't use water on electrical or grease fires.</li>
+        <li>If the fire grows, evacuate immediately and close doors.</li>
+        <li>Never use elevators or jump from windows.</li>
+        <li>Seal doors and signal for help if trapped.</li>
+        <li>Call 112 and give your exact location.</li>
+        <li>Stay low in smoke and cover mouth/nose with a damp cloth.</li>
+        <li>If clothes catch fire – stop, drop, and roll.</li>
+        <li>Never re-enter once outside. Inform rescuers of trapped people.</li>
+      </ul>
+    `,
+    reduction: `
+      <h3>How to Reduce Fire Risks</h3>
+
+      <h4>In the Kitchen</h4>
+      <ul>
+        <li>Keep appliances clean and flammables away.</li>
+        <li>Never cook when sleepy or distracted.</li>
+        <li>Use timers and turn off appliances when done.</li>
+      </ul>
+
+      <h4>Electrical Safety</h4>
+      <ul>
+        <li>Use proper fuses and inspect wires regularly.</li>
+        <li>Don't overload outlets or run cables under carpets.</li>
+      </ul>
+
+      <h4>Heaters</h4>
+      <ul>
+        <li>Use heaters without exposed elements and keep clear space around them.</li>
+        <li>Never leave heaters unattended or use water on electrical fires.</li>
+      </ul>
+
+      <h4>Solid/Liquid Fuel Heating</h4>
+      <ul>
+        <li>Install safely and clean regularly.</li>
+        <li>Don’t use flammable liquids to start fires.</li>
+        <li>Ventilate and use CO detectors.</li>
+      </ul>
+
+      <h4>Gas Heating</h4>
+      <ul>
+        <li>Don’t store gas cylinders in basements.</li>
+        <li>Ventilate and refill only at licensed places.</li>
+        <li>If you smell gas, ventilate and avoid sparks.</li>
+      </ul>
+
+      <h4>Fireworks</h4>
+      <ul>
+        <li>Buy certified products and use outdoors, away from children.</li>
+      </ul>
+
+      <h4>Candles and Cigarettes</h4>
+      <ul>
+        <li>Never leave candles unattended.</li>
+        <li>Place safely and don’t smoke in bed.</li>
+      </ul>
+
+      <h4>Holidays</h4>
+      <ul>
+        <li>Use certified lighting, keep away from heaters, and unplug when away.</li>
+      </ul>
+    `,
+    tips: `
+      <h3>Additional Tips</h3>
+      <ul>
+        <li>Create and practice an evacuation plan with your family.</li>
+        <li>Prepare an emergency bag with essentials.</li>
+        <li>Keep keys accessible and teach kids fire safety.</li>
+        <li>Own a fire extinguisher and learn how to use it.</li>
+      </ul>
+    `
+  };
+
+  function showInfo(key, clickedCard) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[key] || "<p>No information available.</p>";
+
+    document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+    clickedCard.classList.add("active");
+  }
+</script>
+
 </body>
 </html>

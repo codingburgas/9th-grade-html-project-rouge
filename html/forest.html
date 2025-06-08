@@ -5,32 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forest Fire Prevention</title>
   <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <script src="../javascipt/mode.js" defer></script>
 </head>
 <body>
-  <header class="main-header">
+    <header class="main-header">
     <div class="container">
       <h1 id="Header1">Rouge Fighter</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="#">Staff</a></li>
-          <li><a href="#">Vehicles</a></li>
-          <li><a href="../html/map.html">Map</a></li>
-          <li><a href="#">Contact</a></li>
-          <li>
-            <button id="theme-toggle">
-              <img src="../pictures/moon_and_dark_circle_only.png" width="32" alt="Toggle Theme">
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/departments.html">Staff</a></li>
+        <li><a href="#">Vehicles</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="">Sign In</a></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
     </div>
   </header>
 
-  <main class="features-section">
-    <section class="feature">
+<main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('prevention')">Forest Fire Prevention</div>
+    <div class="card" onclick="showInfo('protection')">How to Protect Forests</div>
+    <div class="card" onclick="showInfo('safety')">Safety Recommendations</div>
+  </div>
+
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
+
+
+
+    <footer>
+    <p>&copy; 2025 Rouge Fighter. All rights reserved.</p>
+  </footer>
+
+  <script>
+  const content = {
+    prevention: `
       <h2>Forest Fire Prevention</h2>
-      <p><strong>Did you know?</strong></p>
       <ul>
         <li>Almost 40% of Bulgaria's territory is covered by forests.</li>
         <li>A mature beech tree produces enough oxygen for 10 people each year.</li>
@@ -39,60 +59,53 @@
         <li>Human negligence is the most common cause of forest fires.</li>
         <li>The average speed of wildfire spread is 22.5 km/h.</li>
       </ul>
-    </section>
-
-    <section class="feature">
+    `,
+    protection: `
       <h2>How to Protect Forests from Fire</h2>
       <ul>
         <li>Do not light fires in the forest and do not use fireworks or other pyrotechnic products.</li>
         <li>Keep lighters and matches away from children.</li>
         <li>Never throw away unextinguished cigarettes or matches!</li>
-        <li>Clearing of waste in forest areas should be done by collecting and transporting to designated places. Burning is prohibited!</li>
-        <li>If you notice a fire, call 112 immediately and provide accurate information about your location and observations.</li>
+        <li>Burning of waste in forests is prohibited — use designated collection areas.</li>
+        <li>Call 112 immediately if you see a fire.</li>
       </ul>
-
       <h3>If You're Hiking in the Mountains</h3>
       <ul>
-        <li>Only light fires in designated and secured places.</li>
-        <li>Prepare water or soil in advance to extinguish the fire.</li>
-        <li>Clear dry vegetation within at least 3 meters of the fireplace.</li>
-        <li>Keep the fire pit small (under 50 cm in diameter). Avoid flammable liquids.</li>
-        <li>Do not light fires in dry and windy conditions.</li>
-        <li>Never leave a fire unattended. Douse it thoroughly and check for embers.</li>
+        <li>Light fires only in designated places.</li>
+        <li>Prepare water or soil to extinguish the fire.</li>
+        <li>Clear vegetation around the fire.</li>
+        <li>Do not light fires in dry or windy conditions.</li>
+        <li>Never leave fire unattended. Extinguish thoroughly.</li>
       </ul>
-    </section>
-
-    <section class="feature">
+    `,
+    safety: `
       <h2>Safety Recommendations</h2>
-
       <h3>Understanding Smoke Signals</h3>
       <ul>
-        <li>Smoke color indicates fire type and location: white = grass, dark = dense vegetation.</li>
-        <li>Burning debris can cause secondary fires at a distance.</li>
-        <li>More smoke = larger fire. Move away quickly if smoke increases.</li>
+        <li>White smoke = grass fire; dark smoke = forest fire.</li>
+        <li>Flying debris can start new fires at a distance.</li>
+        <li>More smoke = larger fire. Evacuate if increasing.</li>
       </ul>
-
       <h3>Escape Routes</h3>
       <ul>
-        <li>Follow the opposite direction of smoke tilt – that’s where the fire is heading.</li>
-        <li>Wind drives fire — move against it if safe.</li>
-        <li>If surrounded by smoke, evacuate and protect airways with wet cloth.</li>
-        <li>Avoid climbing uphill unless the ridge is nearby and passable.</li>
+        <li>Move opposite the direction of smoke tilt.</li>
+        <li>Go against the wind if safe.</li>
+        <li>Cover airways with wet cloth if in smoke.</li>
+        <li>Avoid climbing uphill unless you can escape over the ridge.</li>
       </ul>
-
       <h3>Safe Areas</h3>
       <ul>
-        <li>Head to open, vegetation-free areas or near water bodies.</li>
-        <li>Protect clothing from igniting. If on fire — drop, cover face, and roll.</li>
-        <li>Move through already burned zones if necessary, but watch for falling trees and hot ash.</li>
+        <li>Go to open spaces or near water.</li>
+        <li>If clothes catch fire: stop, drop, and roll.</li>
+        <li>Move through burned areas cautiously — watch for falling trees.</li>
       </ul>
-    </section>
-  </main>
+    `
+  };
 
-  <footer>
-    &copy; 2025 Rouge Fighter. All rights reserved.
-  </footer>
-
-  <script src="../javascript/java.js"></script>
+  function showInfo(topic) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[topic] || "<p>No information available.</p>";
+  }
+</script>
 </body>
 </html>
