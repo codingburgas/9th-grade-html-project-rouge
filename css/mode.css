@@ -5,10 +5,23 @@
 --PrimaryColor: #737373;
 --blend: #4ea8de;
 }
-.darkMode{
+.darkmode{
 --BaseColor: #000000;
---TextColor: #f5f5f5;
---SecondTextColor: #e5e5e5;
---PrimaryColor: #8a8a8a;
+--TextColor: #a7a6a6;
+--SecondTextColor: #b1b0b0;
+--PrimaryColor: #232323;
 --blend: #4ea8de;
+}
+#theme-toggle img{
+    width: 50px;
+    height: 50px;
+}
+#theme-toggle img:last-child{
+    display: none;
+}
+.darkMode #theme-toggle img:first-child{
+display: none;
+}
+.darkMode #theme-toggle img:last-child{
+display: block;
 }
