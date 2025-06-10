@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rouge Fighter</title>
   <link rel="stylesheet" href="./css/mainStyle.css" />
   <link rel="stylesheet" href="./css/mode.css">
@@ -10,7 +11,8 @@
   <script type="text/javascript" src="./javascipt/mode.js" defer></script>
   <script type="text/javascript" src="./javascipt/form.js" defer></script>
 </head>
-<body>
+
+<body onload="LogIn()">
   <header class="main-header">
     <div class="container">
       <h1 id="Header1">Rouge Fighter</h1>
@@ -19,7 +21,8 @@
         <li><a href="./html/teams.html">Teams</a></li>
         <li><a href="./html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
-       <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li id="open-button"><button class="open-button" onclick="openForm()"><img class="account"
+              src="../pictures/account.png"></button></li>
 
         <li>
           <button id="theme-toggle">
@@ -30,17 +33,23 @@
       </ul>
     </div>
   </header>
-<!--Form Section-->
-       <div class="modal" id="formModal">
+  <!--Form Section-->
+  <div class="modal" id="formModal">
     <div class="modal-content">
       <span class="close" onclick="closeForm()">&times;</span>
-      <h2>Register</h2>
-      <form>
+      <div class="modal-header">
+
+        <h2>Register</h2>
+        <button onclick="changeForm()">
+          <h2>Login</h2>
+        </button>
+      </div>
+      <form id="signup-form">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="username" name="name" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="useremail" name="email" required>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
@@ -49,8 +58,29 @@
       </form>
     </div>
   </div>
+  <!--Log-In Modal-->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <div class="modal-header">
+        <h2>Login</h2>
+        <button onclick="changeForm()">
+          <h2>Sigh In</h2>
+        </button>
+      </div>
+      <form id="login-form">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
   <main>
-    
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -110,4 +140,5 @@
 
 
 </body>
+
 </html>
