@@ -5,37 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fire Safety</title>
 
-  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
-  <link rel="stylesheet" href="../css/mode.css">
-  <link rel="stylesheet" href="../css/form.css">
+  <link rel="stylesheet" href="../leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.css"/> 
 
-  <!-- Leaflet LocateControl stylesheet -->
-  <link rel="stylesheet" href="../leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.css.map"/>
-
-  <!-- Leaflet core CSS (for maps) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-  <!-- Leaflet core JS (required for map) -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-  <!-- Leaflet LocateControl plugin script -->
-  <script src="/leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.min.js"></script>
-
-  <!-- Leaflet routing machine css-->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-
+  
+  <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css"> 
   <link rel="stylesheet" href="../css/map.css">
-  <!-- Leaflet routing machine js -->
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+  <link rel="stylesheet" href="../css/fire-report-system.css">
 
 </head>
 
 <body class="darkMode">
-  <script src="../javascipt/map.js"></script>
 
-  <!-- Top Navigation -->
-    <header class="main-header">
+  <header class="main-header">
     <div class="container">
       <h1 id="Header1">Rouge Fighter</h1>
       <ul class="nav-links">
@@ -44,7 +29,7 @@
         <li><a href="#">Vehicles</a></li>
         <li><a href="../html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
-        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li><button class="open-button" onclick="openRegistrationForm()"><img class="account"src="../pictures/account.png"></button></li>
 
         <li>
           <button id="theme-toggle">
@@ -55,48 +40,94 @@
       </ul>
     </div>
   </header>
-<!--Form Section-->
-       <div class="modal" id="formModal">
+
+  <div class="modal" id="registrationFormModal">
     <div class="modal-content">
-      <span class="close" onclick="closeForm()">&times;</span>
+      <span class="close" onclick="closeRegistrationForm()">&times;</span>
       <h2>Register</h2>
       <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="regName">Name:</label>
+        <input type="text" id="regName" name="name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="regEmail">Email:</label>
+        <input type="email" id="regEmail" name="email" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="regPassword">Password:</label>
+        <input type="password" id="regPassword" name="password" required>
 
         <button type="submit">Register</button>
       </form>
     </div>
   </div>
-  <!-- Main content area -->
-  <div class="page-layout">
-    <!-- Left Side -->
-    <div class="left-panel">
-      <!-- Search Form -->
-<div class="search-wrapper">
-  <form id="search-form">
-    <input type="text" id="search-input" placeholder="Search..." data-search/>
-  </form>
-</div>
 
+  <div class="modal" id="fireReportModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeFireReportForm()">&times;</span>
+      <h2>Report Fire Incident</h2>
+      <form id="fireReportForm">
+        <label for="incidentLat">Latitude:</label>
+        <input type="text" id="incidentLat" name="latitude" readonly required>
+
+        <label for="incidentLon">Longitude:</label>
+        <input type="text" id="incidentLon" name="longitude" readonly required>
+        
+        <label for="incidentType">Incident Type:</label>
+        <select id="incidentType" name="type" required>
+          <option value="">Select Type</option>
+          <option value="building">Building Fire</option>
+          <option value="forest">Forest Fire</option>
+          <option value="vehicle">Vehicle Fire</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="assignedTeam">Assigned Team:</label>
+        <select id="assignedTeam" name="team" required>
+          <option value="">Loading teams...</option>
+        </select>
+
+        <label for="assignedVehicle">Assigned Vehicle:</label>
+        <select id="assignedVehicle" name="vehicle" required>
+          <option value="">Loading vehicles...</option>
+        </select>
+
+        <label for="startTime">Start Date/Time:</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+
+        <label for="endTime">End Date/Time (Optional):</label>
+        <input type="datetime-local" id="endTime" name="endTime">
+
+        <button type="submit">Submit Report</button>
+      </form>
     </div>
-    <!-- Right Side (Map) -->
+  </div>
+
+  <div class="page-layout">
+    <div class="left-panel">
+      <div class="search-wrapper">
+        <form id="search-form">
+          <input type="text" id="search-input" placeholder="Search..." data-search/>
+        </form>
+      </div>
+    </div>
     <div class="right-panel">
       <div id="map"></div>
     </div>
   </div>
-  
+
   <footer>
     <p>&copy; 2025 Rouge Fighter. All rights reserved.</p>
   </footer>
-  <script src="../javascipt/map.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.min.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+  <script type="text/javascript" src="../javascipt/fire-report-data.js" defer></script>
+  <script type="text/javascript" src="../javascipt/department-info.js" defer></script>
+  <script type="text/javascript" src="../javascipt/map.js" defer></script>
+  <script type="text/javascript" src="../javascipt/fire-report.js" defer></script>
+
 </body>
-
-
 </html>

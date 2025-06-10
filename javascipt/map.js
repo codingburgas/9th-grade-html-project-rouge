@@ -1,13 +1,17 @@
-var AllMarkers = [];
-var DepartmentInfo = [];
+var AllMarkers = []; // Global variable to store all department markers
+var map; // Make map object globally accessible if needed by other functions
 
+// Define the fixed location of the fire station
+const STATION_LOCATION = [42.49483365939794, 27.474203921247042];
+
+// Function to create popup content for department markers (remains unchanged)
 function createPopupContent(data) {
   const popupContent = `
     <div style="
-      font-family: 'Segoe UI', Arial, sans-serif; 
-      font-size: 14px; 
-      line-height: 1.6; 
-      padding: 8px; 
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 8px;
       color: #333;
       background-color: #f9f9f9;
       border-radius: 6px;
@@ -26,88 +30,136 @@ function createPopupContent(data) {
 }
 
 function loadMap() {
-  var map = L.map('map').setView([42.49483365939794, 27.474203921247042], 15);
+    map = L.map('map').setView(STATION_LOCATION, 15); // Set view to station location
 
-  // Add OpenStreetMap tile layer
-  var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  });
-  osm.addTo(map);
+    // Add OpenStreetMap tile layer
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
 
-  // Add default marker
-  var marker = L.marker([42.49483365939794, 27.474203921247042]).addTo(map);
+    // Add a static marker for the fire station
+    L.marker(STATION_LOCATION, {
+        icon: L.icon({
+            iconUrl: '../pictures/fire-station-icon.png', // Ensure you have this icon
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        }),
+        title: "Fire Station"
+    }).addTo(map)
+      .bindPopup("Fire Station Base").openPopup(); // Show popup initially for base
 
-  // Load coordinates and add department markers
-  fetch("../data/department-coordinates.json")
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      return res.json();
-    })
-    .then(data => {
-      data.forEach(coordinates => {
-        const deptData = DepartmentInfo[coordinates.id];
-        const deptMarker = L.marker([coordinates.lat, coordinates.lon])
-          .addTo(map)
-          .bindPopup(createPopupContent(deptData));
-        AllMarkers.push(deptMarker);
-      });
-    })
-    .catch(error => console.error("Error loading coordinates file:", error));
+    // Load coordinates and add department markers (these remain static points)
+    fetch("../data/department-coordinates.json")
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(coordinatesData => {
+            coordinatesData.forEach(coordinates => {
+                const deptData = DepartmentInfo[coordinates.id]; 
+                if (deptData) {
+                    const deptMarker = L.marker([coordinates.lat, coordinates.lon])
+                        .addTo(map)
+                        .bindPopup(createPopupContent(deptData));
+                    AllMarkers.push(deptMarker);
+                } else {
+                    console.warn(`No department info found for ID: ${coordinates.id}`);
+                }
+            });
+        })
+        .catch(error => console.error("Error loading department coordinates:", error));
 
-  // On map click, calculate route and animate marker
-  map.on('click', function(event) {
-    console.log(event);
-    var secondMarker = L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
+    // On map click, open fire report form and dispatch a new vehicle
+    map.on('click', function(event) {
+        console.log("Map clicked at:", event.latlng);
 
-    L.Routing.control({
-      waypoints: [
-        L.latLng(42.49483365939794, 27.474203921247042),
-        L.latLng(event.latlng.lat, event.latlng.lng)
-      ]
-    }).on('routesfound', function(event) {
-      console.log(event);
-      event.routes[0].coordinates.forEach(function(coord, index) {
-        setTimeout(() => {
-          marker.setLatLng([coord.lat, coord.lng]);
-        }, 100 * index);
-      });
-    }).addTo(map);
-  });
-}
+        // Open the fire report form and pass coordinates
+        if (typeof openFireReportForm === 'function') {
+            openFireReportForm(event.latlng.lat, event.latlng.lng);
+        } else {
+            console.error("openFireReportForm is not defined. Check script loading order.");
+        }
 
-function GetData() {
-  const dataInput = document.querySelector("[data-search]");
+        // 1. Add a static marker for the incident destination
+        const incidentDestinationMarker = L.marker([event.latlng.lat, event.latlng.lng], {
+            icon: L.icon({
+                iconUrl: '../pictures/fire-incident-icon.png', // Ensure you have this icon
+                iconSize: [35, 35],
+                iconAnchor: [17, 35],
+                popupAnchor: [0, -35]
+            }),
+            title: "Incident Location"
+        }).addTo(map);
+        incidentDestinationMarker.bindPopup(`Incident at:<br>Lat: ${event.latlng.lat.toFixed(4)}<br>Lon: ${event.latlng.lng.toFixed(4)}`).openPopup();
 
-  fetch('../data/department-info.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      DepartmentInfo = data;
-      const store = data.map(department => {
-        return { name: department[1], id: Number(department[0]) };
-      });
 
-      dataInput.addEventListener("input", (e) => {
-        const value = e.target.value.toLowerCase();
+        // 2. Create a NEW marker for the responding vehicle (this is the one that will animate)
+        const vehicleMarker = L.marker(STATION_LOCATION, {
+            icon: L.icon({
+                iconUrl: '../pictures/fire-truck-icon.png', // Ensure you have this icon
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            title: "Responding Vehicle"
+        }).addTo(map);
+        vehicleMarker.bindPopup("Responding...").openPopup();
 
-        store.forEach(user => {
-          const isVisible = user.name.toLowerCase().includes(value);
-          const marker = AllMarkers[user.id - 1];
-          if (marker) {
-            marker.setOpacity(isVisible ? 1 : 0);
-          }
+
+        // 3. Create a NEW routing control for THIS specific vehicleMarker
+        const routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(STATION_LOCATION[0], STATION_LOCATION[1]), // Start from station
+                L.latLng(event.latlng.lat, event.latlng.lng)       // To clicked destination
+            ],
+            createMarker: function(i, waypoint, n) {
+                return null; // Don't create default markers; we manage our own vehicleMarker
+            },
+            addWaypoints: false,
+            routeWhileDragging: false,
+            showAlternatives: false,
+            fitSelectedRoutes: false,
+            // Styling the route line for this specific vehicle
+            lineOptions: {
+                styles: [{ color: '#007bff', opacity: 0.7, weight: 5, className: 'animated-route' }]
+            },
+            // Optionally, specify a router if OSRM is not preferred or for more control
+            // router: L.routing.osrmv1({
+            //     serviceUrl: 'https://router.project-osrm.org/route/v1'
+            // })
         });
-      });
-    })
-    .catch(error => console.error("Error loading info file:", error));
+
+        routingControl.on('routesfound', function(e) {
+            const coordinates = e.routes[0].coordinates;
+            const totalDuration = 30000; // 30 seconds
+            const delayPerStep = totalDuration / coordinates.length;
+
+            let i = 0;
+            // Recursive function to animate THIS vehicleMarker
+            function animateVehicle() {
+                if (i < coordinates.length) {
+                    vehicleMarker.setLatLng([coordinates[i].lat, coordinates[i].lng]);
+                    i++;
+                    setTimeout(animateVehicle, delayPerStep);
+                } else {
+                    console.log("Vehicle reached destination.");
+                    vehicleMarker.bindPopup("Vehicle Arrived!").openPopup();
+                    
+                    // You might want to remove the route line after the animation
+                    map.removeControl(routingControl); 
+                }
+            }
+            animateVehicle(); // Start animating this specific vehicleMarker
+        }).addTo(map);
+
+        // This routingControl is local to this click event, allowing multiple
+        // concurrent routes to be displayed and animated.
+    });
 }
 
-// Initialize
-GetData();
+// Initialize the map when the script loads
 loadMap();

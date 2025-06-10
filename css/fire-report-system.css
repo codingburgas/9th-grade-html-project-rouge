@@ -1,0 +1,82 @@
+/* Styles for the modal overlay (the dim background) */
+.modal#fireReportModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Ensures it covers the entire viewport */
+    z-index: 1000; /* Stays on top of other content */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: auto; /* Allows scrolling if content is too tall */
+    background-color: rgba(0,0,0,0.6); /* Semi-transparent black background */
+    
+    /* Flexbox for centering the modal content */
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Class added by JavaScript to make the modal visible */
+.modal#fireReportModal.is-visible {
+    display: flex; /* Makes the modal visible and uses flexbox for centering */
+}
+
+/* Styles for the modal's content box (the Fire Report Form itself) */
+.modal#fireReportModal .modal-content {
+    background-color: white; /* Simple white background */
+    padding: 20px; /* Basic padding inside the form */
+    border-radius: 5px; /* Slightly rounded corners */
+    width: 300px; /* Fixed width for simplicity */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Basic shadow for separation */
+    position: relative; /* Needed for positioning the close button */
+}
+
+/* Styles for the close button (the 'X') */
+.modal#fireReportModal .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333; /* Simple dark grey color */
+}
+
+/* Basic styling for input fields and labels inside the modal */
+.modal#fireReportModal .modal-content label {
+    display: block; /* Each label on its own line */
+    margin-bottom: 5px; /* Small space below labels */
+    font-family: sans-serif; /* Basic font */
+    color: #333;
+}
+
+.modal#fireReportModal .modal-content input,
+.modal#fireReportModal .modal-content select {
+    width: calc(100% - 16px); /* Full width minus padding */
+    padding: 8px;
+    margin-bottom: 10px; /* Space below each input/select */
+    box-sizing: border-box; /* Include padding in width */
+    border: 1px solid #ccc; /* Simple border */
+    border-radius: 3px; /* Slightly rounded input fields */
+    font-family: sans-serif;
+}
+
+.modal#fireReportModal .modal-content input[readonly] {
+    background-color: #f0f0f0; /* Light grey for read-only fields */
+    cursor: not-allowed;
+}
+
+/* Basic styling for the submit button */
+.modal#fireReportModal button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Standard blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+.modal#fireReportModal button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
