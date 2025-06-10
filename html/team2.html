@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Safety</title>
+  <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/departments.html">Staff</a></li>
+        <li><a href="../html/teams.html">Teams</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('vehicles', this)">Vehicles</div>
+  </div>
+
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
+<!--Form Section-->
+       <div class="modal" id="formModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Register</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rouge Fighter - Fire Safety Initiative</p>
+  </footer>
+  <script>
+  const content = {
+    vehicles: `<h2>Type 2 Fire Truck (Engine Company)</h2>
+  <p>The Type 2 fire truck shares many of the same features as the Type 1 Engine Company but is less commonly found in fire departments. These versatile vehicles are often used in urban and suburban settings, mainly for vehicle accident response, rescue operations, and as heavy rescue engines.</p>
+
+  <h3>Main Purpose:</h3>
+  <ul>
+    <li>Vehicle Accident Response</li>
+    <li>Rescue Operations</li>
+    <li>Initial Firefighting until larger units arrive</li>
+  </ul>
+
+  <h3>Key Specifications:</h3>
+  <table>
+    <tr>
+      <th>Feature</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td>Water Tank Capacity</td>
+      <td>Smaller than Type 1 (varies by department needs)</td>
+    </tr>
+    <tr>
+      <td>Pump Capacity</td>
+      <td>Lower than Type 1 (specific to rescue/light engine roles)</td>
+    </tr>
+    <tr>
+      <td>Storage Capacity</td>
+      <td>Large compartments for rescue equipment</td>
+    </tr>
+    <tr>
+      <td>Crew Capacity</td>
+      <td>3 to 4 firefighters</td>
+    </tr>
+  </table>
+
+  <h3>Additional Equipment Includes:</h3>
+  <ul>
+    <li>Self-Contained Breathing Apparatus (SCBA)</li>
+    <li>Circular Saws and Power Tools</li>
+    <li>Rescue and Extrication Equipment</li>
+    <li>Basic Firefighting Gear</li>
+    <li>Medical and First Aid Kits</li>
+    <li>Specialized Rescue Tools (depending on configuration)</li>
+  </ul>
+      `
+  };
+
+  function showInfo(key, clickedCard) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[key] || "<p>No information available.</p>";
+
+    document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+    clickedCard.classList.add("active");
+  }
+</script>
+
+</body>
+</html>
