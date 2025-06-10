@@ -8,9 +8,13 @@
   <link rel="stylesheet" href="./css/mainStyle.css" />
   <link rel="stylesheet" href="./css/mode.css">
   <link rel="stylesheet" href="./css/form.css">
+  <link rel="stylesheet" href="./css/charts1.css">
   <script type="text/javascript" src="./javascipt/mode.js" defer></script>
   <script type="text/javascript" src="./javascipt/form.js" defer></script>
   <script type="text/javascript" src="./javascipt/charts1.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+// <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
 
 <body onload="LogIn()">
@@ -113,6 +117,12 @@
         </div>
       </div>
     </section>
+
+    <div class="chart-container">
+      <div class="chart">
+        <canvas id="doughnut" width="400" height="400"></canvas>
+      </div>
+    </div>
 
     <!-- Features Section -->
     <section class="features-section">
