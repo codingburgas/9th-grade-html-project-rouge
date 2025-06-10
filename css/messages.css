@@ -1,0 +1,63 @@
+/* --- Custom Message/Toast Styles --- */
+#customMessage {
+    position: fixed;
+    bottom: 20px; /* Position from the bottom */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Center horizontally and start slightly below */
+    background-color: #28a745; /* Default success green */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+    z-index: 2000; /* Ensure it's above everything else */
+    min-width: 280px;
+    max-width: 90%;
+    gap: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+}
+
+#customMessage.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Slide up into view */
+}
+
+/* Close button for the message */
+#customMessage .message-close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s ease;
+}
+
+#customMessage .message-close:hover {
+    color: white;
+}
+
+/* Message types */
+#customMessage.success {
+    background-color: #28a745; /* Green for success */
+}
+
+#customMessage.error {
+    background-color: #dc3545; /* Red for error */
+}
+
+#customMessage.info {
+    background-color: #007bff; /* Blue for info */
+}
+
+/* Ensure message text doesn't have extra margins */
+#customMessage p {
+    margin: 0;
+    flex-grow: 1; /* Allows the text to take available space */
+}

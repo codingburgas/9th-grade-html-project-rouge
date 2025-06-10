@@ -41,13 +41,13 @@ function loadMap() {
     // Add a static marker for the fire station
     L.marker(STATION_LOCATION, {
         icon: L.icon({
-            iconUrl: '../pictures/fire-station-icon.png', // Ensure you have this icon
-            iconSize: [40, 40],
-            iconAnchor: [20, 40],
-            popupAnchor: [0, -40]
-        }),
-        title: "Fire Station"
-    }).addTo(map)
+        iconUrl: '../pictures/fire-icon.png', // Corrected path
+        iconSize: [50, 50],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    }),
+    title: "Responding Vehicle"
+}).addTo(map)
       .bindPopup("Fire Station Base").openPopup(); // Show popup initially for base
 
     // Load coordinates and add department markers (these remain static points)
@@ -87,7 +87,7 @@ function loadMap() {
         // 1. Add a static marker for the incident destination
         const incidentDestinationMarker = L.marker([event.latlng.lat, event.latlng.lng], {
             icon: L.icon({
-                iconUrl: '../pictures/fire-incident-icon.png', // Ensure you have this icon
+                iconUrl: '../pictures/red-flag.png', // Ensure you have this icon
                 iconSize: [35, 35],
                 iconAnchor: [17, 35],
                 popupAnchor: [0, -35]
@@ -100,7 +100,7 @@ function loadMap() {
         // 2. Create a NEW marker for the responding vehicle (this is the one that will animate)
         const vehicleMarker = L.marker(STATION_LOCATION, {
             icon: L.icon({
-                iconUrl: '../pictures/fire-truck-icon.png', // Ensure you have this icon
+                iconUrl: '..pictures/fire-icon.png', // Ensure you have this icon
                 iconSize: [32, 32],
                 iconAnchor: [16, 32],
                 popupAnchor: [0, -32]
@@ -127,10 +127,6 @@ function loadMap() {
             lineOptions: {
                 styles: [{ color: '#007bff', opacity: 0.7, weight: 5, className: 'animated-route' }]
             },
-            // Optionally, specify a router if OSRM is not preferred or for more control
-            // router: L.routing.osrmv1({
-            //     serviceUrl: 'https://router.project-osrm.org/route/v1'
-            // })
         });
 
         routingControl.on('routesfound', function(e) {

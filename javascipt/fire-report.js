@@ -70,9 +70,56 @@ function populateFireReportDropdowns() {
     });
 }
 
+// NEW: Variable to store the timeout ID for the message auto-hide
+let messageTimeoutId;
+
+// NEW: Function to show a custom message on screen
+function showMessage(messageText, type = 'success', duration = 4000) {
+    const customMessage = document.getElementById('customMessage');
+    const messageTextElement = document.getElementById('messageText');
+
+    if (customMessage && messageTextElement) {
+        // Clear any existing auto-hide timeout
+        clearTimeout(messageTimeoutId);
+
+        // Reset classes and set the new type
+        customMessage.className = ''; // Remove all existing classes
+        customMessage.classList.add(type);
+
+        messageTextElement.textContent = messageText;
+        customMessage.classList.add('is-visible'); // Make it visible
+
+        // Set a new timeout to auto-hide the message
+        messageTimeoutId = setTimeout(() => {
+            hideMessage();
+        }, duration);
+    }
+}
+
+// NEW: Function to hide the custom message
+function hideMessage() {
+    const customMessage = document.getElementById('customMessage');
+    if (customMessage) {
+        clearTimeout(messageTimeoutId); // Clear any pending hide calls
+        customMessage.classList.remove('is-visible'); // Hide it
+        
+        // Optional: Remove type class after transition for clean state
+        // This makes sure the background color resets cleanly for next message
+        customMessage.addEventListener('transitionend', function handler() {
+            if (!customMessage.classList.contains('is-visible')) { // Only reset if it's truly hidden
+                customMessage.className = ''; // Remove all classes
+            }
+            customMessage.removeEventListener('transitionend', handler); // Clean up listener
+        });
+    }
+}
+
+
 // Handle form submission
 document.addEventListener('DOMContentLoaded', () => {
     const fireReportForm = document.getElementById('fireReportForm');
+    const customMessageCloseBtn = document.querySelector('#customMessage .message-close');
+
     if (fireReportForm) {
         fireReportForm.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent default form submission
@@ -86,9 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // You can now process the 'report' object (e.g., send to server, store locally)
             console.log("Fire Incident Reported:", report);
 
-            alert('Fire incident reported successfully (simulated)! Check console for data.');
-            closeFireReportForm();
+            // --- REPLACE alert() with showMessage() ---
+            showMessage('Fire incident reported successfully!', 'success'); // Shows a green success message
+            
+            closeFireReportForm(); // Close the modal after submission
         });
+    }
+
+    // NEW: Add event listener to the custom message close button
+    if (customMessageCloseBtn) {
+        customMessageCloseBtn.addEventListener('click', hideMessage);
     }
 
     // Close the modal if the user clicks outside of it
