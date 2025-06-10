@@ -1,6 +1,6 @@
 [
-  { "id": "team1", "name": "Първа смяна" },
-  { "id": "team2", "name": "Втора смяна" },
-  { "id": "team3", "name": "Специален отряд" },
-  { "id": "team4", "name": "Резервен екип" }
+  { "id": 1, "name": "Първа смяна", "vehicleId": 1, "employeeIds": [1, 2, 9] },
+  { "id": 2, "name": "Втора смяна", "vehicleId": 2, "employeeIds": [3, 4, 10] },
+  { "id": 3, "name": "Специален отряд", "vehicleId": 4, "employeeIds": [5, 6] },
+  { "id": 4, "name": "Резервен екип", "vehicleId": 5, "employeeIds": [7, 8] }
 ]
