@@ -107,7 +107,7 @@ function loadMap() {
             }),
             title: "Responding Vehicle"
         }).addTo(map);
-        vehicleMarker.bindPopup("Responding...").openPopup();
+        vehicleMarker.bindPopup("Arriving...").openPopup();
 
 
         // 3. Create a NEW routing control for THIS specific vehicleMarker
