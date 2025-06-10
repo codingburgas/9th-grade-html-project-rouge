@@ -1,82 +1,259 @@
-/* Styles for the modal overlay (the dim background) */
+/* --- Modal Overlay Styles (no change needed here) --- */
 .modal#fireReportModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Ensures it covers the entire viewport */
-    z-index: 1000; /* Stays on top of other content */
+    display: none;
+    position: fixed;
+    z-index: 1050;
     left: 0;
     top: 0;
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    overflow: auto; /* Allows scrolling if content is too tall */
-    background-color: rgba(0,0,0,0.6); /* Semi-transparent black background */
-    
-    /* Flexbox for centering the modal content */
-    justify-content: center; 
-    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(30, 40, 50, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Class added by JavaScript to make the modal visible */
 .modal#fireReportModal.is-visible {
-    display: flex; /* Makes the modal visible and uses flexbox for centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Styles for the modal's content box (the Fire Report Form itself) */
+/* --- Modal Content Styles (WIDER FOR HORIZONTAL LAYOUT) --- */
 .modal#fireReportModal .modal-content {
-    background-color: white; /* Simple white background */
-    padding: 20px; /* Basic padding inside the form */
-    border-radius: 5px; /* Slightly rounded corners */
-    width: 300px; /* Fixed width for simplicity */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Basic shadow for separation */
-    position: relative; /* Needed for positioning the close button */
+    background: linear-gradient(145deg, #e6e9ed, #ffffff);
+    padding: 2.2rem 2.5rem; /* Adjusted padding for width */
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 700px; /* MUCH WIDER for horizontal layout */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.25), 0 0.8rem 2rem rgba(0, 0, 0, 0.15); /* Deeper shadow */
+    position: relative;
+    transform: translateY(-40px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.3, 0.7, 0.4, 1.2), opacity 0.4s ease-out;
+    border: 1px solid rgba(200, 200, 200, 0.2);
 }
 
-/* Styles for the close button (the 'X') */
+.modal#fireReportModal.is-visible .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* --- Close Button Styles --- */
 .modal#fireReportModal .close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 2.2rem;
     cursor: pointer;
-    color: #333; /* Simple dark grey color */
+    color: #b0b0b0;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    line-height: 1;
+    font-weight: 200;
 }
 
-/* Basic styling for input fields and labels inside the modal */
+.modal#fireReportModal .close:hover {
+    color: #e74c3c;
+    transform: rotate(90deg) scale(1.1);
+    text-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
+}
+
+/* --- Heading Styles --- */
+.modal#fireReportModal h2 {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2.2rem; /* Adjusted font size for wider layout */
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Form Grid Layout --- */
+.modal#fireReportModal #fireReportForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 1.5rem 2rem; /* Row gap, Column gap */
+    /* Adjust grid template areas or specific field placements if needed for complex layouts */
+}
+
+/* Make full-width fields span both columns */
+.modal#fireReportModal .form-field.full-width,
+.modal#fireReportModal button.full-width { /* Apply to button as well */
+    grid-column: 1 / -1; /* Spans from the first column line to the last */
+    margin-top: 0.5rem; /* Add some space above full-width elements */
+}
+
+/* --- Label Styles --- */
 .modal#fireReportModal .modal-content label {
-    display: block; /* Each label on its own line */
-    margin-bottom: 5px; /* Small space below labels */
-    font-family: sans-serif; /* Basic font */
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #4a4a4a;
+    font-weight: 600;
+    font-size: 0.98rem; /* Adjusted font size */
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+/* --- Input, Select, and Textarea Styles --- */
+.modal#fireReportModal .modal-content input,
+.modal#fireReportModal .modal-content select,
+.modal#fireReportModal .modal-content textarea {
+    width: 100%; /* Important: Takes full width of its grid cell */
+    padding: 0.85rem 1rem;
+    /* margin-bottom is now handled by gap on the grid */
+    box-sizing: border-box;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem; /* Adjusted font size */
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.modal#fireReportModal .modal-content select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-13%205.4-13%2013s5.4%2013%2013%2013h255.3c6.5%200%2013-5.4%2013-13z%22%2F%3E%3C%2Fsvg%3E');
+    background-position: right 0.9rem center;
+    background-size: 0.7em;
+    padding-right: 2.5rem;
+}
+
+/* Ensures option backgrounds are solid (fix for striped text) */
+.modal#fireReportModal .modal-content select option {
+    background-color: #ffffff;
     color: #333;
 }
 
-.modal#fireReportModal .modal-content input,
-.modal#fireReportModal .modal-content select {
-    width: calc(100% - 16px); /* Full width minus padding */
-    padding: 8px;
-    margin-bottom: 10px; /* Space below each input/select */
-    box-sizing: border-box; /* Include padding in width */
-    border: 1px solid #ccc; /* Simple border */
-    border-radius: 3px; /* Slightly rounded input fields */
-    font-family: sans-serif;
+/* Specific styling for the new Textarea */
+.modal#fireReportModal .modal-content textarea {
+    min-height: 90px; /* Adjusted min height for wider layout */
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.modal#fireReportModal .modal-content input:focus,
+.modal#fireReportModal .modal-content select:focus,
+.modal#fireReportModal .modal-content textarea:focus {
+    border-color: #0084ff;
+    box-shadow: 0 0 0 0.3rem rgba(0, 132, 255, 0.4), 0 0 10px rgba(0, 132, 255, 0.6);
+    background-color: #ffffff;
+    outline: none;
 }
 
 .modal#fireReportModal .modal-content input[readonly] {
-    background-color: #f0f0f0; /* Light grey for read-only fields */
-    cursor: not-allowed;
+    background-color: #f5f7f9;
+    cursor: default;
+    color: #6a747c;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Basic styling for the submit button */
+/* --- Submit Button Styles --- */
 .modal#fireReportModal button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff; /* Standard blue background */
+    /* No width: 100% here as grid handles it, but full-width class will apply */
+    padding: 1.05rem;
+    background: linear-gradient(45deg, #007bff, #0056b3);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.6rem;
     cursor: pointer;
-    font-size: 16px;
-    font-family: sans-serif;
+    font-size: 1.15rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease-in-out;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .modal#fireReportModal button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background: linear-gradient(45deg, #0056b3, #007bff);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 22px rgba(0, 123, 255, 0.4), 0 0 18px rgba(0, 123, 255, 0.7);
+    filter: brightness(1.1);
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+}
+
+.modal#fireReportModal button[type="submit"]:active {
+    background: #004085;
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    filter: brightness(0.9);
+}
+
+/* --- Responsive Adjustments (Crucial for horizontal layout) --- */
+@media (max-width: 768px) { /* Adjust to single column on tablets and smaller */
+    .modal#fireReportModal .modal-content {
+        max-width: 95%; /* Allows more width on smaller screens, if available */
+        padding: 2rem;
+    }
+    .modal#fireReportModal #fireReportForm {
+        grid-template-columns: 1fr; /* Revert to a single column */
+        gap: 1rem; /* Adjust gap for single column */
+    }
+    .modal#fireReportModal .form-field.full-width,
+    .modal#fireReportModal button.full-width {
+        grid-column: auto; /* Remove span on single column */
+        margin-top: 0; /* Remove extra margin if not needed */
+    }
+    .modal#fireReportModal h2 {
+        font-size: 2rem;
+    }
+    .modal#fireReportModal .modal-content input,
+    .modal#fireReportModal .modal-content select,
+    .modal#fireReportModal .modal-content textarea {
+        font-size: 1rem;
+    }
+    .modal#fireReportModal button[type="submit"] {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 500px) { /* Further adjustments for small phones */
+    .modal#fireReportModal .modal-content {
+        padding: 1.5rem;
+    }
+    .modal#fireReportModal h2 {
+        font-size: 1.7rem;
+        margin-bottom: 1.5rem;
+    }
+    .modal#fireReportModal .modal-content label {
+        font-size: 0.85rem;
+    }
+    .modal#fireReportModal .modal-content input,
+    .modal#fireReportModal .modal-content select,
+    .modal#fireReportModal .modal-content textarea {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    .modal#fireReportModal button[type="submit"] {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+    .modal#fireReportModal .close {
+        font-size: 2rem;
+        top: 0.7rem;
+        right: 0.8rem;
+    }
+    .modal#fireReportModal .modal-content textarea {
+        min-height: 70px;
+    }
+}
+
+@media (max-height: 750px) { /* Adjusted for shorter screens (laptops, tablets in landscape) */
+    .modal#fireReportModal .modal-content {
+        max-height: 90vh;
+        overflow-y: auto; /* Enable scrolling for form content */
+        padding: 1.8rem;
+    }
+    .modal#fireReportModal .modal-content textarea {
+        min-height: 80px; /* Adjust textarea height */
+    }
 }

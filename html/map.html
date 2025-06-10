@@ -26,7 +26,7 @@
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="../html/departments.html">Staff</a></li>
-        <li><a href="#">Vehicles</a></li>
+        <li><a href="../html/teams.html">Teams</a></li>
         <li><a href="../html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
         <li><button class="open-button" onclick="openRegistrationForm()"><img class="account"src="../pictures/account.png"></button></li>
@@ -65,41 +65,56 @@
       <span class="close" onclick="closeFireReportForm()">&times;</span>
       <h2>Report Fire Incident</h2>
       <form id="fireReportForm">
-        <label for="incidentLat">Latitude:</label>
-        <input type="text" id="incidentLat" name="latitude" readonly required>
-
-        <label for="incidentLon">Longitude:</label>
-        <input type="text" id="incidentLon" name="longitude" readonly required>
+        <div class="form-field">
+            <label for="incidentLat">Latitude:</label>
+            <input type="text" id="incidentLat" name="latitude" readonly required>
+        </div>
+        <div class="form-field">
+            <label for="incidentLon">Longitude:</label>
+            <input type="text" id="incidentLon" name="longitude" readonly required>
+        </div>
         
-        <label for="incidentType">Incident Type:</label>
-        <select id="incidentType" name="type" required>
-          <option value="">Select Type</option>
-          <option value="building">Building Fire</option>
-          <option value="forest">Forest Fire</option>
-          <option value="vehicle">Vehicle Fire</option>
-          <option value="other">Other</option>
-        </select>
+        <div class="form-field">
+            <label for="incidentType">Incident Type:</label>
+            <select id="incidentType" name="type" required>
+              <option value="">Select Type</option>
+              <option value="building">Building Fire</option>
+              <option value="forest">Forest Fire</option>
+              <option value="vehicle">Vehicle Fire</option>
+              <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="startTime">Start Date/Time:</label>
+            <input type="datetime-local" id="startTime" name="startTime" required>
+        </div>
 
-        <label for="assignedTeam">Assigned Team:</label>
-        <select id="assignedTeam" name="team" required>
-          <option value="">Loading teams...</option>
-        </select>
+        <div class="form-field">
+            <label for="assignedTeam">Assigned Team:</label>
+            <select id="assignedTeam" name="team" required>
+              <option value="">Loading teams...</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="endTime">End Date/Time (Optional):</label>
+            <input type="datetime-local" id="endTime" name="endTime">
+        </div>
 
-        <label for="assignedVehicle">Assigned Vehicle:</label>
-        <select id="assignedVehicle" name="vehicle" required>
-          <option value="">Loading vehicles...</option>
-        </select>
+        <div class="form-field">
+            <label for="assignedVehicle">Assigned Vehicle:</label>
+            <select id="assignedVehicle" name="vehicle" required>
+              <option value="">Loading vehicles...</option>
+            </select>
+        </div>
+        <div class="form-field full-width">
+            <label for="incidentDescription">Description:</label>
+            <textarea id="incidentDescription" name="description" rows="4" placeholder="Provide a brief description of the incident..."></textarea>
+        </div>
 
-        <label for="startTime">Start Date/Time:</label>
-        <input type="datetime-local" id="startTime" name="startTime" required>
-
-        <label for="endTime">End Date/Time (Optional):</label>
-        <input type="datetime-local" id="endTime" name="endTime">
-
-        <button type="submit">Submit Report</button>
+        <button type="submit" class="full-width">Submit Report</button>
       </form>
     </div>
-  </div>
+</div>
 
   <div class="page-layout">
     <div class="left-panel">

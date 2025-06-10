@@ -6,7 +6,8 @@ function openFireReportForm(lat, lng) {
     const startTimeInput = document.getElementById('startTime');
 
     if (modal) {
-        modal.style.display = 'flex'; // Show the modal
+        // Use classList.add() to trigger the CSS transition
+        modal.classList.add('is-visible'); 
 
         // Pre-fill coordinates
         if (latInput) latInput.value = lat.toFixed(6);
@@ -31,7 +32,9 @@ function openFireReportForm(lat, lng) {
 function closeFireReportForm() {
     const modal = document.getElementById('fireReportModal');
     if (modal) {
-        modal.style.display = 'none';
+        // Use classList.remove() to trigger the CSS transition
+        modal.classList.remove('is-visible');
+        
         // Optionally reset form fields here
         document.getElementById('fireReportForm').reset();
     }
@@ -47,7 +50,8 @@ function populateFireReportDropdowns() {
     vehicleSelect.innerHTML = '<option value="">Select Vehicle</option>';
 
     // Teams are loaded by fire-report-data.js (via getTeams())
-    const teams = getTeams(); 
+    // Ensure getTeams() exists and returns an array of team objects {id: ..., name: ...}
+    const teams = typeof getTeams === 'function' ? getTeams() : []; 
     teams.forEach(team => {
         const option = document.createElement('option');
         option.value = team.id;
@@ -56,7 +60,8 @@ function populateFireReportDropdowns() {
     });
 
     // Vehicles are loaded by fire-report-data.js (via getVehicles())
-    const vehicles = getVehicles();
+    // Ensure getVehicles() exists and returns an array of vehicle objects {id: ..., name: ...}
+    const vehicles = typeof getVehicles === 'function' ? getVehicles() : [];
     vehicles.forEach(vehicle => {
         const option = document.createElement('option');
         option.value = vehicle.id;
@@ -90,8 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const fireReportModal = document.getElementById('fireReportModal');
     if (fireReportModal) {
         window.addEventListener('click', (event) => {
+            // Only close if the click is directly on the modal overlay, not its content
             if (event.target === fireReportModal) {
-                fireReportModal.style.display = 'none';
+                closeFireReportForm(); // Use the existing close function
             }
         });
     }
