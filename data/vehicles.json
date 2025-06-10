@@ -1,7 +1,10 @@
 [
-  { "id": 1, "name": "Пожарен автомобил 101", "type": "Автоцистерна", "status": "available" },
-  { "id": 2, "name": "Пожарен автомобил 102", "type": "Автоцистерна", "status": "available" },
-  { "id": 3, "name": "Пожарен автомобил 103", "type": "Автодрабина", "status": "available" },
-  { "id": 4, "name": "Пожарен камион", "type": "Специален камион", "status": "available" },
-  { "id": 5, "name": "Пожарен джип", "type": "Оперативен джип", "status": "available" }
+  { "id": 1, "name": "Engine Company", "type": "Type 1", "status": "available" },
+  { "id": 2, "name": "Heavy Rescue Engine", "type": "Type 2", "status": "available" },
+  { "id": 3, "name": "Wildland Fire Truck", "type": "Type 3", "status": "available" },
+  { "id": 4, "name": "Larger Wildland Fire Truck", "type": "Type 4", "status": "available" },
+  { "id": 5, "name": "Mini Pumper 1", "type": "Type 5", "status": "available" }, 
+  { "id": 5, "name": "Mini Pumper 2", "type": "Type 6", "status": "available" }, 
+  { "id": 5, "name": "Mini Pumper 3", "type": "Type 7", "status": "available" },
+  { "id": 5, "name": "Electric Fire Truck", "type": "Type 8", "status": "available" }
 ]

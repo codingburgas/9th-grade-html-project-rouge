@@ -188,3 +188,10 @@ footer {
   color: var(--SecondTextColor);
   font-size: 14px;
 }
+
+@media (max-width: 600px) {
+  footer {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+}
