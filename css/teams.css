@@ -1,50 +1,298 @@
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+/* Custom CSS Variables - препоръчително е да са дефинирани в :root */
+:root {
+    --PrimaryColor: #34495e; /* Примерно по-тъмно синьо за header/footer */
+    --SecondaryColor: #2c3e50; /* По-тъмен оттенък */
+    --TextColor: #ecf0f1; /* Светъл текст */
+    --SecondTextColor: #bdc3c7; /* По-светъл сив текст */
+    --AccentColor: #e74c3c; /* За бутоните, твоят червен */
+    --AccentHoverColor: #c0392b; /* По-тъмно червено за hover */
+    --GlowColor: rgba(255, 255, 255, 0.4); /* За бял светещ ефект */
+    --ButtonGlowColor: rgba(231, 76, 60, 0.6); /* За светещ ефект на бутон */
+}
+
+/* Base Styles & Sticky Footer Setup */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* По-модерен шрифт */
+    background-color: #f4f7f6; /* По-светъл, модерен фон */
     color: #333;
+    line-height: 1.6;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Гарантира, че wrapper е поне 100% от височината на viewport-а */
+}
+
+main {
+    flex-grow: 1; /* Това избутва фуутъра надолу, заемайки цялото налично пространство */
+    padding: 20px 0; /* Добавя padding към основното съдържание */
+}
+
+/* Header */
+.main-header {
+    background-color: var(--PrimaryColor);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--SecondaryColor);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Лек сянка за header */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+#Header1 {
+    color: var(--TextColor);
+    font-size: 1.8rem; /* Оптимизиран размер за заглавието на сайта */
+    letter-spacing: 1px;
+    transition: text-shadow 0.3s ease; /* Преход за glow ефекта */
+}
+
+#Header1:hover {
+    text-shadow: 0 0 10px var(--GlowColor), 0 0 20px var(--GlowColor); /* Glow ефект при hover */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px; /* Увеличено разстояние за по-добро четене */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--TextColor);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative; /* За подчертаване при hover */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Преходи за цвят и сянка */
+}
+
+.nav-links a:hover {
+    color: var(--SecondTextColor);
+    text-shadow: 0 0 8px var(--GlowColor); /* Лек glow ефект при hover */
+}
+
+.nav-links a::after { /* Анимация за подчертаване */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--SecondTextColor);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Icons in Header (if any, as per your image) */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-icons .icon {
+    font-size: 22px; /* По-големи икони */
+    color: var(--TextColor);
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.header-icons .icon:hover {
+    color: var(--SecondTextColor);
+    text-shadow: 0 0 8px var(--GlowColor);
+}
+
+
+/* Main Content Styles */
+h1 { /* Заглавието "Firefighters Teams" */
+    text-align: center;
+    font-size: 2.8rem; /* По-голям и въздействащ размер */
+    margin-bottom: 50px; /* Повече разстояние */
+    color: #333;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Лек сянка за обем */
 }
 
 .team-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 30px; /* Повече разстояние между елементите */
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* Добавя padding за по-малки екрани */
 }
 
 .team-item {
     background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
+    border-radius: 15px; /* По-заоблени ъгли */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* По-изразен сянка */
+    padding: 25px; /* Повече вътрешен отстъп */
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Преходи за hover ефекти */
+    position: relative; /* За glow */
+    overflow: hidden; /* За да не излиза сянката при transform */
 }
 
+.team-item:hover {
+    transform: translateY(-8px); /* Лек повдигащ ефект */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25), 0 0 20px rgba(0,0,0,0.1); /* По-силен сянка */
+}
+
+/* Glow effect for team items - using pseudo-elements */
+.team-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--GlowColor) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.team-item:hover::before {
+    opacity: 0.1; /* Леко сияние при hover */
+}
+
+
 .team-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #444;
+    font-size: 1.8rem; /* По-голям размер */
+    font-weight: 700; /* По-плътен шрифт */
+    margin-bottom: 12px;
+    color: #333;
+    position: relative;
+    z-index: 1; /* Над glow ефекта */
 }
 
 .team-content {
-    font-size: 1.1rem;
-    color: #777;
-    margin-bottom: 15px;
+    font-size: 1.15rem; /* Леко по-голям размер */
+    color: #666;
+    margin-bottom: 25px; /* Повече разстояние */
+    position: relative;
+    z-index: 1; /* Над glow ефекта */
 }
 
 .info-button {
     display: inline-block;
-    background-color: #e74c3c;
+    background-color: var(--AccentColor);
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px; /* По-голям padding */
     text-decoration: none;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
+    font-weight: 600; /* По-плътен текст */
+    font-size: 1.05rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    border: none; /* Премахване на стандартния бордюр */
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .info-button:hover {
-    background-color: #c0392b;
+    background-color: var(--AccentHoverColor);
+    box-shadow: 0 0 15px var(--ButtonGlowColor), 0 0 25px var(--ButtonGlowColor); /* Glow ефект при hover */
+    transform: translateY(-2px); /* Лек повдигащ ефект */
 }
 
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 10px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondTextColor);
+    font-size: 15px; /* Леко увеличен размер */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Сянка за footer */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Навигацията да отива под логото */
+        text-align: center;
+        gap: 15px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-icons {
+        margin-top: 15px;
+    }
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+    .team-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* По-малки карти */
+        gap: 20px;
+    }
+    .team-item {
+        padding: 20px;
+    }
+    .team-title {
+        font-size: 1.6rem;
+    }
+    .team-content {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 600px) {
+    footer {
+        font-size: 12px;
+        padding: 15px 5px; /* Регулиран padding */
+    }
+    .main-header {
+        padding: 15px 0;
+    }
+    #Header1 {
+        font-size: 1.5rem;
+    }
+    .nav-links {
+        gap: 8px;
+    }
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    .team-container {
+        grid-template-columns: 1fr; /* Една колона на мобилни */
+        padding: 0 15px;
+    }
+    .team-item {
+        border-radius: 10px;
+    }
+    .info-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Optional: Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--PrimaryColor);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--SecondaryColor);
+}

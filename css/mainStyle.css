@@ -1,197 +1,298 @@
+/* Custom CSS Variables - препоръчително е да са дефинирани в :root */
+:root {
+    --PrimaryColor: #34495e;
+    --SecondaryColor: #2c3e50;
+    --TextColor: #ecf0f1;
+    --SecondTextColor: #bdc3c7;
+    --BaseColor: #1a2a3a;
+    --blend: #e74c3c;
+
+    /* Нови променливи за Glow ефекти */
+    --GlowColorLight: rgba(255, 255, 255, 0.4); /* Бял glow */
+    --GlowColorAccent: rgba(231, 76, 60, 0.6); /* Червен glow (от --blend) */
+    --CardGlowColor: rgba(255, 255, 255, 0.1); /* Лек glow за карти */
+}
 
 
 /* Global Styles */
 body {
-  background: linear-gradient(to bottom, var(--BaseColor), var(--TextColor));
-  color: var(--TextColor);
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
+    background: linear-gradient(to bottom, var(--BaseColor), var(--TextColor));
+    color: var(--TextColor);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Header */
-
-
 .main-header {
-  background-color: var(--PrimaryColor);
-  padding: 20px 0;
-  border-bottom: 1px solid var(--SecondaryColor);
+    background-color: var(--PrimaryColor);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--SecondaryColor);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
 }
 
 #Header1 {
-  color: var(--TextColor);
+    color: var(--TextColor);
+    transition: text-shadow 0.3s ease;
+}
+
+#Header1:hover {
+    color: var(--TextColor);
+    text-shadow: 0 0 10px var(--GlowColorLight), 0 0 20px var(--GlowColorLight);
 }
 
 .nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-  color: var(--TextColor);
-  text-decoration: none;
-  font-weight: 500;
+    color: var(--TextColor);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--SecondTextColor);
+    color: var(--SecondTextColor);
+    text-shadow: 0 0 8px var(--GlowColorLight);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--SecondTextColor);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 
 /* Hero Section */
 .hero {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .hero-content {
-  flex: 1;
-  min-width: 300px;
+    flex: 1;
+    min-width: 300px;
 }
 
 .hero-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
 .hero-content span {
-  color: var(--blend);
+    color: var(--blend);
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
 
 .cta-button {
-  padding: 10px 20px;
-  background-color: var(--blend);
-  color: var(--SecondaryColor);
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
+    padding: 10px 20px;
+    background-color: var(--blend);
+    color: var(--SecondaryColor);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--blend);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--GlowColorAccent), 0 0 25px var(--GlowColorAccent);
 }
 
 .hero-image {
-  flex: 1;
-  min-width: 300px;
-  text-align: center;
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
 }
 
 .hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 25px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.hero-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 20px var(--CardGlowColor);
+}
+
 
 /* Map Section */
 .map-section {
-  padding: 60px 20px;
-  text-align: center;
-  max-width: 1200px;
-  margin: auto;
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .map-section h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
+    font-size: 2rem;
+    margin-bottom: 40px;
 }
 
 .map-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
 }
 
+/* Updated fire-card styles - applied directly to <a> */
 .fire-card {
-  background-color: var(--PrimaryColor);
-  border-radius: 10px;
-  padding: 20px;
-  width: 250px;
-  box-shadow: 0 0 10px #00000020;
-  transition: transform 0.3s;
+    display: block;
+    background-color: var(--PrimaryColor);
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 0 10px #00000020;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Glow ефект с ::before за fire-card */
+.fire-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--CardGlowColor) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
 }
 
 .fire-card:hover {
-  transform: scale(1.05);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fire-card:hover::before {
+    opacity: 0.15;
 }
 
 .fire-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .fire-card p {
-  margin-top: 10px;
-  color: var(--SecondTextColor);
-  font-weight: bold;
+    margin-top: 10px;
+    color: var(--SecondTextColor);
+    font-weight: bold;
 }
 
-.fire-card a{
-  text-decoration: none;
-}
+
 /* Features Section */
 .features-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .feature {
-  background-color: var(--PrimaryColor);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #00000020;
-  color: var(--SecondTextColor);
-  text-align: left;
+    background-color: var(--PrimaryColor);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000020;
+    color: var(--SecondTextColor);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--CardGlowColor) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature:hover::before {
+    opacity: 0.15;
 }
 
 .feature h3 {
-  margin-bottom: 10px;
-  color: var(--TextColor);
+    margin-bottom: 10px;
+    color: var(--TextColor);
 }
 
 .feature p {
-  margin: 0;
-  color: var(--SecondTextColor);
+    margin: 0;
+    color: var(--SecondTextColor);
 }
+
 
 /* Footer */
 footer {
-  text-align: center;
-  padding: 30px 10px;
-  background-color: var(--PrimaryColor);
-  color: var(--SecondTextColor);
-  font-size: 14px;
+    text-align: center;
+    padding: 30px 10px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondTextColor);
+    font-size: 14px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 600px) {
-  footer {
-    font-size: 12px;
-    padding: 10px 5px;
-  }
+    footer {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
 }
