@@ -3,13 +3,27 @@ function LogIn() {
   if(localStorage.getItem("AccessCheck") == 'true')
   {
   let user = JSON.parse(localStorage.getItem("loggedInUser"))
-  document.getElementById("open-button").innerHTML = `<button onclick="LogOut()" class="open-button" style="font-size:20px; color:var(--TextColor);">${user.username}</button>`;
+  document.getElementById("open-button").innerHTML = `<button onclick="DropDown()" class="open-button" style="font-size:20px; color:var(--TextColor);">${user.username}</button>`;
   }
 }
 function LogOut() {
   document.getElementById("open-button").innerHTML = '<button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button>'
   localStorage.setItem("AccessCheck", 'false');
+  document.getElementById("dropDownMenu").style.display = "none";
+  alert("You have been logged out!");
 }
+
+function DropDown()
+{
+    const menu = document.getElementById("dropDownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+window.addEventListener("click", function (event) {
+  if (!event.target.closest("#open-button") && !event.target.closest("#dropDownMenu")) {
+    document.getElementById("dropDownMenu").style.display = "none";
+  }
+});
 
 function openForm() {
   document.getElementById("loginModal").style.display = "flex";
