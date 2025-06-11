@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/mode.css">
+    <link rel="stylesheet" href="../css/form.css">
+    
+    <script type="text/javascript" defer src="../javascipt/form.js" ></script>
+    <script defer src="../javascipt/mode.js"></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <h1 id="Header1">Rouge Fighter</h1>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./html/teams.html">Teams</a></li>
+                <li><a href="./html/map.html">Map</a></li>
+                <li><a href="./html/contact.html">Contact</a></li>
+                <li id="open-button"><button class="open-button" onclick="openForm()"><img class="account"
+                            src="../pictures/account.png"></button></li>
+
+                <li>
+                    <button id="theme-toggle">
+                        <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+                        <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!--Form Section-->
+    <div class="modal" id="formModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <div class="modal-header">
+
+                <h2>Register</h2>
+                <button onclick="changeForm()">
+                    <h2>Login</h2>
+                </button>
+            </div>
+            <form id="signup-form">
+                <label for="name">Name:</label>
+                <input type="text" id="username" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="useremail" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <!--Log-In Modal-->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button onclick="changeForm()">
+                    <h2>Sigh In</h2>
+                </button>
+            </div>
+            <form id="login-form">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+        <section class="hero">
+            <h1>CONTACT US</h1>
+            <p>Might that from text to her it reflection design attention happened refute. Support have resting...</p>
+        </section>
+
+        <section class="info-cards">
+            <div class="card">
+                <h3>Office Location</h3>
+                <p>4140 Parker Rd. Allentown, New Mexico 31134</p>
+                <a href="#">Direction →</a>
+            </div>
+            <div class="card">
+                <h3>Working Hours</h3>
+                <p>Sun to Fri: 10am to 06pm<br>Sat: 10am to 03pm</p>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="card">
+                <h3>Communication</h3>
+                <p>+123 456 7898<br>themefax@gmail.com</p>
+                <a href="#">Support →</a>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <form id="contact-form" class="form">
+                <input type="text" placeholder="What's your Name?" required>
+                <input type="email" placeholder="Your email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div class="side-text">
+                <h3>Have any query?</h3>
+                <h2>CONTACT US</h2>
+                <p>There I necessary her monstrous came the evaluation on problem frequency...</p>
+            </div>
+        </section>
+
+        <script src="script.js"></script>
+</body>
+
+</html>

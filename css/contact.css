@@ -1,0 +1,232 @@
+/* Global */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, var(--BaseColor), var(--TextColor));
+  color: var(--TextColor);
+  margin: 0;
+  padding: 0;
+}
+
+/* Contact Hero Section */
+.hero {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--PrimaryColor);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--SecondTextColor);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Info Cards Section */
+.info-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: var(--PrimaryColor);
+  color: var(--SecondTextColor);
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 0 10px #00000020;
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  color: var(--TextColor);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card a {
+  color: var(--blend);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover {
+  color: var(--SecondTextColor);
+}
+
+/* Contact Section with form and sidebar */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Contact Form */
+.form {
+  flex: 1;
+  max-width: 500px;
+  background-color: var(--PrimaryColor);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00000020;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  border: 1px solid var(--blend);
+  border-radius: 8px;
+  background-color: var(--BaseColor);
+  color: var(--TextColor);
+  resize: vertical;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: var(--SecondTextColor);
+  opacity: 0.8;
+}
+
+.form button {
+  width: 100%;
+  padding: 14px 0;
+  background-color: var(--blend);
+  color: var(--BaseColor);
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form button:hover {
+  background-color: var(--SecondTextColor);
+  color: var(--BaseColor);
+}
+
+/* Sidebar Text */
+.side-text {
+  flex: 1;
+  max-width: 450px;
+  color: var(--SecondTextColor);
+  padding-left: 20px;
+}
+
+.side-text h3 {
+  color: var(--PrimaryColor);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.side-text h2 {
+  color: var(--blend);
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.side-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .side-text {
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  .info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .side-text h2 {
+    font-size: 2rem;
+  }
+}
+
+.main-header {
+  background-color: var(--PrimaryColor);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--SecondaryColor);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+#Header1 {
+  color: var(--TextColor);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--TextColor);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--SecondTextColor);
+}

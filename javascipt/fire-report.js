@@ -24,6 +24,8 @@ function openFireReportForm(lat, lng) {
     }
 }
 
+
+
 function closeFireReportForm() {
     const modal = document.getElementById('fireReportModal');
     if (modal) {
