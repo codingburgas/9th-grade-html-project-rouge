@@ -90,3 +90,5 @@ function closeFireReportForm() {
     const modal = document.getElementById('fireReportModal');
     modal.classList.remove('is-visible');
 }
+
+LogIn();

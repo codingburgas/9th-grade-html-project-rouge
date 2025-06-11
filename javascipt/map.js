@@ -1,6 +1,6 @@
 var AllMarkers = []; // Global variable to store all department markers
 var map; // Make map object globally accessible if needed by other functions
-
+let DepartmentInfo = [];
 // Define the fixed location of the fire station
 const STATION_LOCATION = [42.49483365939794, 27.474203921247042];
 
@@ -41,8 +41,8 @@ function loadMap() {
     // Add a static marker for the fire station
     L.marker(STATION_LOCATION, {
         icon: L.icon({
-        iconUrl: '../pictures/fire-icon.png', // Corrected path
-        iconSize: [50, 50],
+        iconUrl: '../pictures/location.png', // Corrected path
+        iconSize: [35, 35],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]
     }),
@@ -51,27 +51,20 @@ function loadMap() {
       .bindPopup("Fire Station Base").openPopup(); // Show popup initially for base
 
     // Load coordinates and add department markers (these remain static points)
-    fetch("../data/department-coordinates.json")
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            return res.json();
-        })
-        .then(coordinatesData => {
-            coordinatesData.forEach(coordinates => {
-                const deptData = DepartmentInfo[coordinates.id]; 
-                if (deptData) {
-                    const deptMarker = L.marker([coordinates.lat, coordinates.lon])
-                        .addTo(map)
-                        .bindPopup(createPopupContent(deptData));
-                    AllMarkers.push(deptMarker);
-                } else {
-                    console.warn(`No department info found for ID: ${coordinates.id}`);
-                }
-            });
-        })
-        .catch(error => console.error("Error loading department coordinates:", error));
+fetch("../data/department-coordinates.json")
+.then(res => {
+  if(!res.ok) {
+    throw new Error("HTTP error! status: ${res.status}");
+  }
+  return res.json();
+})
+.then(data => {
+  data.forEach(coordinates => {
+    marker = L.marker([coordinates.lat, coordinates.lon]).addTo(map).bindPopup(createPopupContent(DepartmentInfo[coordinates.id]));
+    AllMarkers.push(marker);
+  });
+})
+.catch(error => console.error("Error loading file:", error));
 
     // On map click, open fire report form and dispatch a new vehicle
     map.on('click', function(event) {
@@ -100,7 +93,7 @@ function loadMap() {
         // 2. Create a NEW marker for the responding vehicle (this is the one that will animate)
         const vehicleMarker = L.marker(STATION_LOCATION, {
             icon: L.icon({
-                iconUrl: '..pictures/fire-icon.png', // Ensure you have this icon
+                iconUrl: '../pictures/fire-icon.png', // Ensure you have this icon
                 iconSize: [32, 32],
                 iconAnchor: [16, 32],
                 popupAnchor: [0, -32]
@@ -156,6 +149,40 @@ function loadMap() {
         // concurrent routes to be displayed and animated.
     });
 }
+
+function GetData() {
+  const dataInput = document.querySelector("[data-search]");
+
+  fetch('../data/department-info.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("HTTP error! status: ${response.status}");
+      }
+      return response.json();
+    })
+    .then(data => {
+      DepartmentInfo = data;
+      const store = data.map(department => {
+        return { name: department[1], id: Number(department[0]) };
+      });
+
+      dataInput.addEventListener("input", (e) => {
+        const value = e.target.value.toLowerCase();
+
+        store.forEach(user => {
+          const isVisible = user.name.toLowerCase().includes(value);
+          const marker = AllMarkers[user.id - 1];
+          if (marker) {
+            marker.setOpacity(isVisible ? 1 : 0);
+          }
+        });
+      });
+    })
+    .catch(error => console.error("Error loading file:", error));
+  }
+
+
+  GetData();
 
 // Initialize the map when the script loads
 loadMap();
