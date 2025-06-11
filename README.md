@@ -38,6 +38,6 @@
 </p>
 
 # 🌟Presenting and Team Documentation
-- [Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/avgeorgiev23_codingburgas_bg/EQlJzbiqEuNAttn5nWoXiRQBL78kvM6YXkqtyWif7EnX7Q?e=E10DcZ)
-- [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/nggeorgieva23_codingburgas_bg/EdMEcUzu8r1Miyn-V7q6FW0BN1Ka6caXReEPb8ZhVWJebQ?e=Usa9PH)
+- [Documentation]
+- [Presentation]
 <br>
