@@ -41,8 +41,8 @@ function loadMap() {
     // Add a static marker for the fire station
     L.marker(STATION_LOCATION, {
         icon: L.icon({
-        iconUrl: '../pictures/fire-icon.png', // Corrected path
-        iconSize: [50, 50],
+        iconUrl: '../pictures/location.png', // Corrected path
+        iconSize: [35, 35],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]
     }),
@@ -100,7 +100,7 @@ function loadMap() {
         // 2. Create a NEW marker for the responding vehicle (this is the one that will animate)
         const vehicleMarker = L.marker(STATION_LOCATION, {
             icon: L.icon({
-                iconUrl: '..pictures/fire-icon.png', // Ensure you have this icon
+                iconUrl: '../pictures/fire-icon.png', // Ensure you have this icon
                 iconSize: [32, 32],
                 iconAnchor: [16, 32],
                 popupAnchor: [0, -32]
@@ -145,15 +145,12 @@ function loadMap() {
                     console.log("Vehicle reached destination.");
                     vehicleMarker.bindPopup("Vehicle Arrived!").openPopup();
                     
-                    // You might want to remove the route line after the animation
+                    // Remove the route line after the animation
                     map.removeControl(routingControl); 
                 }
             }
             animateVehicle(); // Start animating this specific vehicleMarker
         }).addTo(map);
-
-        // This routingControl is local to this click event, allowing multiple
-        // concurrent routes to be displayed and animated.
     });
 }
 
