@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Safety</title>
+  <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/teams.html">Teams</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('vehicles', this)">Vehicles</div>
+  </div>
+
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
+<!--Form Section-->
+       <div class="modal" id="formModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Register</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rouge Fighter - Fire Safety Initiative</p>
+  </footer>
+  <script>
+  const content = {
+    vehicles: `<h2>Electric Fire Truck</h2>
+<p>While not classified as a formal "type" under NFPA standards, the electric fire truck is an emerging innovation in fire service fleets. These vehicles are being adopted by departments across the country as part of efforts to meet environmental goals, reduce emissions, and cut fuel and maintenance costs. Additionally, electric fire trucks contribute to firefighter safety by minimizing exposure to carbon emissions during operations.</p>
+
+<h3>Main Purpose:</h3>
+<ul>
+  <li>Environmentally Friendly Firefighting Operations</li>
+  <li>Urban and Municipal Fire Response</li>
+  <li>Reduction of Operational Costs and Emissions</li>
+</ul>
+
+<h3>Key Features:</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>Chassis</td>
+    <td>Electric Powered</td>
+  </tr>
+  <tr>
+    <td>Emissions</td>
+    <td>Zero Tailpipe Emissions</td>
+  </tr>
+  <tr>
+    <td>Operational Range</td>
+    <td>Varies by Manufacturer and Battery Capacity</td>
+  </tr>
+  <tr>
+    <td>Maintenance Costs</td>
+    <td>Lower Compared to Diesel Engines</td>
+  </tr>
+  <tr>
+    <td>Noise Levels</td>
+    <td>Reduced for Safer Operation</td>
+  </tr>
+</table>
+
+<h3>Benefits Include:</h3>
+<ul>
+  <li>Lower Carbon Footprint</li>
+  <li>Reduced Fuel Consumption</li>
+  <li>Less Maintenance Downtime</li>
+  <li>Improved Air Quality for Firefighters and the Community</li>
+  <li>Quiet Operation for Urban Environments</li>
+</ul>
+
+<p>Learn more about the advantages and developments in electric fire trucks by exploring recent innovations in the fire service industry.</p>
+
+<p>Regardless of the type of fire truck required, Pierce Manufacturing can help support the concept, design, and configuration of a custom apparatus to meet your fire department’s unique needs.</p>
+
+<p>Do you have questions about the types of fire trucks and how they are designed and manufactured? Let us know in the comments!</p>
+
+<p>Take a look at other comparative blogs that may be of interest to you.</p>
+
+      `
+  };
+
+  function showInfo(key, clickedCard) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[key] || "<p>No information available.</p>";
+
+    document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+    clickedCard.classList.add("active");
+  }
+</script>
+
+</body>
+</html>

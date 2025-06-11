@@ -8,9 +8,9 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
     display: flex;
     flex-direction: column;
-    align-items: center;
     transition: all 0.3s ease-in-out; 
-    margin-left: 445px;
+    margin: 0 auto; 
+    
 
 }
 

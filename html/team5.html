@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Safety</title>
+  <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/teams.html">Teams</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('vehicles', this)">Vehicles</div>
+  </div>
+
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
+<!--Form Section-->
+       <div class="modal" id="formModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Register</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rouge Fighter - Fire Safety Initiative</p>
+  </footer>
+  <script>
+  const content = {
+    vehicles: `<h2>Fire Truck</h2>
+<p>Fire trucks are part of the wildland firefighting vehicle class and are commonly built on a medium-duty chassis with 4-wheel drive. Fire trucks are typically used for wildland and brush fire response and can also serve as quick attack units before larger apparatus arrive on scene.</p>
+
+<h3>Main Purpose:</h3>
+<ul>
+  <li>Wildland Firefighting</li>
+  <li>Brush Fire Response</li>
+  <li>Initial Fire Suppression</li>
+</ul>
+
+<h3>Key Specifications:</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>Chassis</td>
+    <td>Medium-Duty with 4-Wheel Drive</td>
+  </tr>
+  <tr>
+    <td>Gross Vehicle Weight Rating (GVWR)</td>
+    <td>Maximum 26,000 lbs</td>
+  </tr>
+  <tr>
+    <td>Water Tank Capacity</td>
+    <td>Minimum 400 gallons</td>
+  </tr>
+  <tr>
+    <td>Pump Capacity</td>
+    <td>Minimum 50 GPM @ 100 PSI</td>
+  </tr>
+  <tr>
+    <td>Crew Capacity</td>
+    <td>Minimum 2 firefighters</td>
+  </tr>
+  <tr>
+    <td>Pump and Roll Capability</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
+<h3>Additional Equipment Includes:</h3>
+<ul>
+  <li>Small Booster Pump</li>
+  <li>Brush Fire Hose Reels (1 1/2-inch and 1-inch hoses)</li>
+  <li>Basic Wildland Firefighting Tools</li>
+  <li>Personal Protective Equipment (PPE) for Wildland Operations</li>
+  <li>Optional EMS Response Kit</li>
+</ul>
+
+
+      `
+  };
+
+  function showInfo(key, clickedCard) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[key] || "<p>No information available.</p>";
+
+    document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+    clickedCard.classList.add("active");
+  }
+</script>
+
+</body>
+</html>

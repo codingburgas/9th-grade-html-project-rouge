@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Safety</title>
+  <link rel="stylesheet" href="../css/protocol.css" />
+  <link rel="stylesheet" href="../css/mode.css">
+  <link rel="stylesheet" href="../css/form.css">
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="container">
+      <h1 id="Header1">Rouge Fighter</h1>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../html/teams.html">Teams</a></li>
+        <li><a href="../html/map.html">Map</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button class="open-button" onclick="openForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li>
+          <button id="theme-toggle">
+            <img src="../pictures/moon_and_dark_circle_only.png" alt="DarkMode" />
+            <img src="../pictures/icons8-light-mode-78-dark-to-white.png" alt="lightMode">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="features-flex">
+  <div class="card-list">
+    <div class="card" onclick="showInfo('vehicles', this)">Vehicles</div>
+  </div>
+
+  <div id="info-box" class="card-content-box">
+    <p>Select a card to view information.</p>
+  </div>
+</main>
+<!--Form Section-->
+       <div class="modal" id="formModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <h2>Register</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rouge Fighter - Fire Safety Initiative</p>
+  </footer>
+  <script>
+  const content = {
+    vehicles: `<h2>Brush truck</h2>
+<p>Brush truck, is specifically designed for rural and wildland settings. These trucks include unique design and configuration details to handle the challenging terrain they encounter. Wildland fire trucks are commonly built on a commercial 4x4 chassis and can serve as wildland urban interface vehicles. Their design allows them to be sleek, highly maneuverable, and capable of off-road and variable terrain performance. Brush truck are essential for wildfire response, enabling crews to get as close as safely possible to fires while maintaining vehicle stability and control.</p>
+
+<h3>Main Purpose:</h3>
+<ul>
+  <li>Wildland Firefighting</li>
+  <li>Brush Fire Response</li>
+  <li>Wildland Urban Interface Operations</li>
+</ul>
+
+<h3>Key Specifications:</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>Chassis</td>
+    <td>Commercial 4x4</td>
+  </tr>
+  <tr>
+    <td>Gross Vehicle Weight Rating (GVWR)</td>
+    <td>Over 26,000 lbs</td>
+  </tr>
+  <tr>
+    <td>Water Tank Capacity</td>
+    <td>Minimum 500 gallons</td>
+  </tr>
+  <tr>
+    <td>Pump Capacity</td>
+    <td>At least 150 GPM @ 250 PSI</td>
+  </tr>
+  <tr>
+    <td>Crew Capacity</td>
+    <td>Minimum 3 firefighters</td>
+  </tr>
+</table>
+
+<h3>Additional Equipment Includes:</h3>
+<ul>
+  <li>Power-Take-Off (PTO) Pump</li>
+  <li>Auxiliary Pump (Diesel or Hydraulic)</li>
+  <li>Pump-and-Roll Capability</li>
+  <li>Hose Reels and Wildland Nozzles</li>
+  <li>Fire Line Tools (e.g., shovels, Pulaskis, McLeods)</li>
+  <li>Personal Protective Equipment (PPE) for Wildland Operations</li>
+</ul>
+      `
+  };
+
+  function showInfo(key, clickedCard) {
+    const box = document.getElementById("info-box");
+    box.innerHTML = content[key] || "<p>No information available.</p>";
+
+    document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+    clickedCard.classList.add("active");
+  }
+</script>
+
+</body>
+</html>
