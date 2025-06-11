@@ -77,8 +77,8 @@ fetch("../data/department-coordinates.json")
             console.error("openFireReportForm is not defined. Check script loading order.");
         }
 
-        // 1. Add a static marker for the incident destination
-        const incidentDestinationMarker = L.marker([event.latlng.lat, event.latlng.lng], {
+        document.getElementById('fireReportForm').addEventListener('submit', () => {
+          const incidentDestinationMarker = L.marker([event.latlng.lat, event.latlng.lng], {
             icon: L.icon({
                 iconUrl: '../pictures/red-flag.png', // Ensure you have this icon
                 iconSize: [35, 35],
@@ -88,7 +88,6 @@ fetch("../data/department-coordinates.json")
             title: "Incident Location"
         }).addTo(map);
         incidentDestinationMarker.bindPopup(`Incident at:<br>Lat: ${event.latlng.lat.toFixed(4)}<br>Lon: ${event.latlng.lng.toFixed(4)}`).openPopup();
-
 
         // 2. Create a NEW marker for the responding vehicle (this is the one that will animate)
         const vehicleMarker = L.marker(STATION_LOCATION, {
@@ -148,6 +147,9 @@ fetch("../data/department-coordinates.json")
         // This routingControl is local to this click event, allowing multiple
         // concurrent routes to be displayed and animated.
     });
+        })
+        
+        
 }
 
 function GetData() {
