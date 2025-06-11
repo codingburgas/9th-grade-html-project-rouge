@@ -16,7 +16,16 @@
   <link rel="stylesheet" href="../css/map.css">
   <link rel="stylesheet" href="../css/fire-report-system.css">
   <link rel="stylesheet" href="../css/messages.css">
-
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="/leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.min.js" defer></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js" defer></script>
+  
+  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
+  <script type="text/javascript" src="../javascipt/form.js" defer></script>
+  <script type="text/javascript" src="../javascipt/fire-report-data.js" defer></script>
+  <script type="text/javascript" src="../javascipt/map.js" defer></script>
+  <script type="text/javascript" src="../javascipt/fire-report.js" defer></script>
 </head>
 
 <body class="darkMode">
@@ -29,7 +38,10 @@
         <li><a href="../html/teams.html">Teams</a></li>
         <li><a href="../html/map.html">Map</a></li>
         <li><a href="#">Contact</a></li>
-        <li><button class="open-button" onclick="openRegistrationForm()"><img class="account"src="../pictures/account.png"></button></li>
+        <li id="open-button"><button class="open-button" onclick="openForm()"><img class="account"
+              src="../pictures/account.png"></button></li>
+
+        <li>
 
         <li>
           <button id="theme-toggle">
@@ -41,21 +53,48 @@
     </div>
   </header>
 
-  <div class="modal" id="registrationFormModal">
+  <div class="modal" id="formModal">
     <div class="modal-content">
-      <span class="close" onclick="closeRegistrationForm()">&times;</span>
-      <h2>Register</h2>
-      <form>
-        <label for="regName">Name:</label>
-        <input type="text" id="regName" name="name" required>
+      <span class="close" onclick="closeForm()">&times;</span>
+      <div class="modal-header">
 
-        <label for="regEmail">Email:</label>
-        <input type="email" id="regEmail" name="email" required>
+        <h2>Register</h2>
+        <button onclick="changeForm()">
+          <h2>Login</h2>
+        </button>
+      </div>
+      <form id="signup-form">
+        <label for="name">Name:</label>
+        <input type="text" id="username" name="name" required>
 
-        <label for="regPassword">Password:</label>
-        <input type="password" id="regPassword" name="password" required>
+        <label for="email">Email:</label>
+        <input type="email" id="useremail" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
         <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+  <!--Log-In Modal-->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeForm()">&times;</span>
+      <div class="modal-header">
+        <h2>Login</h2>
+        <button onclick="changeForm()">
+          <h2>Sigh In</h2>
+        </button>
+      </div>
+      <form id="login-form">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" name="loginEmail" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
       </form>
     </div>
   </div>
@@ -138,16 +177,6 @@
     <p>&copy; 2025 Rouge Fighter. All rights reserved.</p>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="/leaflet-locatecontrol-gh-pages/dist/L.Control.Locate.min.js"></script>
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
-  <script type="text/javascript" src="../javascipt/mode.js" defer></script>
-  <script type="text/javascript" src="../javascipt/form.js" defer></script>
-  <script type="text/javascript" src="../javascipt/fire-report-data.js" defer></script>
-  <script type="text/javascript" src="../javascipt/department-info.js" defer></script>
-  <script type="text/javascript" src="../javascipt/map.js" defer></script>
-  <script type="text/javascript" src="../javascipt/fire-report.js" defer></script>
 
 </body>
 </html>
