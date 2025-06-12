@@ -33,8 +33,8 @@
 </div>
 # 📑Used tools for our documentation, presentation & communication:
 <p align="left">
-<a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=70px /></a>
-<a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=70px /></a>
+<a href="../9th-grade-html-project-rouge/documentation/Rouge.docx"><img src="https://img.icons8.com/color/48/microsoft-word-2019--v2.png" alt="MS Word logo" width=70px /></a>
+<a href="../9th-grade-html-project-rouge/documentation/Rogue-presentation.pptx"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=70px /></a>
 </p>
 
 # 🌟Presenting and Team Documentation
